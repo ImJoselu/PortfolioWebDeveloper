@@ -76,8 +76,9 @@
     margin: 10px;
 }
 
-.h4 {
-    margin: 10px;
+.subtitulo {
+    margin-top: 10px;
+    margin-bottom: 3px;
 }
 
 /* Estilos específicos para pantallas grandes (992px en adelante) */
