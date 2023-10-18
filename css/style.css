@@ -1,0 +1,24 @@
+:root {
+    --blanco: #F7EBE8;
+    --blanco-2: rgba(255,255,255,.2);
+    --negro: #444140;
+    --negro-2: rgba(0, 0, 0, 0.5);
+    --tipo-titular:'Playfair Display', serif;
+    --tipo-principal:'Inter', sans-serif;
+  }
+
+* {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    box-sizing: border-box;
+    vertical-align: baseline;
+  }
+
+  img , figure{
+    max-width: 100%;
+    width: 100%;
+    display: flex;
+    object-fit: cover;
+    object-position: center center;
+  }
