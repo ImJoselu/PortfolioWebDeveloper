@@ -4,7 +4,8 @@
     --negro: #444140;
     --negro-2: rgba(0, 0, 0, 0.5);
     --tipo-titular:'Playfair Display', serif;
-    --tipo-principal:'Inter', sans-serif;
+    --tipo-principal:'Roboto', sans-serif;
+    --tipo-parrafos:'Lato', sans-serif;
   }
 
 * {
@@ -22,3 +23,49 @@
     object-fit: cover;
     object-position: center center;
   }
+
+  /* Estilos generales que aplican a todos los dispositivos */
+body {
+    font-family: var(--tipo-principal);
+    font-size: 16px;
+    line-height: 1.6;
+    color: #333;
+  }
+  
+  /* Estilos específicos para pantallas pequeñas (hasta 767px) */
+  @media only screen and (max-width: 767px) {
+    body {
+      font-size: 14px;  /* Reduzca el tamaño de la fuente para pantallas pequeñas */
+    }
+  
+    /* Estilos para el menú de hamburguesa, por ejemplo */
+    .menu-icon {
+      display: block;  /* Hacer visible el icono de menú en pantallas pequeñas */
+    }
+  
+    nav {
+      /* Estilos adicionales para el menú de navegación en pantallas pequeñas */
+    }
+  
+    /* Otros estilos específicos para pantallas pequeñas */
+  }
+  
+  /* Estilos específicos para pantallas medianas (768px - 991px) */
+  @media only screen and (min-width: 768px) and (max-width: 991px) {
+    body {
+      /* Ajustar estilos adicionales para pantallas medianas */
+    }
+  
+    /* Otros estilos específicos para pantallas medianas */
+  }
+  
+  /* Estilos específicos para pantallas grandes (992px en adelante) */
+  @media only screen and (min-width: 992px) {
+    body {
+      max-width: 960px;  /* Limitar el ancho máximo para pantallas grandes */
+      margin: 0 auto;    /* Centrar el contenido en pantallas grandes */
+    }
+  
+    /* Otros estilos específicos para pantallas grandes */
+  }
+  
