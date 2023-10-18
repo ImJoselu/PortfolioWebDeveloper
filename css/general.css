@@ -104,6 +104,10 @@ footer {
   margin: 0 10px; /* Espaciado entre las imágenes */
 }
 
+.negrita {
+ font-weight: bold;  
+}
+
 /* Estilos específicos para pantallas grandes (992px en adelante) */
 @media only screen and (min-width: 992px) {
   body {

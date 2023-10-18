@@ -1,0 +1,92 @@
+:root {
+  --blanco: #f7ebe8;
+  --blanco-2: #ffffff33;
+  --negro: #333333;
+  --negro-2: rgba(0, 0, 0, 0.5);
+  --tipo-titular: "Playfair Display", serif;
+  --tipo-principal: "Roboto", sans-serif;
+  --tipo-parrafos: "Lato", sans-serif;
+  --opacidad: 0.5;
+}
+
+.infoMain {
+  text-align: center;
+  padding: 20px;
+}
+
+.hashtags {
+  padding: 20px 10% 20px 10%;
+  display: flex;
+  text-align: center;
+  align-items: center;
+  justify-content: space-between;
+  font-weight: bold;
+}
+
+.separacion {
+  border-top: 1px solid #ccc;
+  margin: 10px 10px 0 10px;
+}
+
+.inforMasSobreMi,
+.educacion {
+  text-align: center;
+  padding: 20px;
+}
+
+.titulos {
+  padding-bottom: 10px;
+}
+
+.tarjeta {
+  margin-top: 10px;
+}
+
+.botonTarjeta {
+  display: inline-block;
+  width: 80%;
+  padding: 10px 20px;
+  font-size: 16px;
+  font-weight: bold;
+  text-align: center;
+  text-decoration: none;
+  color: var(--negro);
+  border: 2px solid var(--negro);
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.botonTarjeta:hover {
+    color: var(--blanco);
+    background-color: var(--negro);
+}
+
+.tarjetaInformacion {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.5s ease-in-out;
+}
+
+.tarjetaInformacion.active {
+    max-height: 500px; /* ajusta el valor según la altura máxima que desees */
+}
+
+
+.separacionSegundaVersion {
+    margin: 10px;
+}
+
+.h4 {
+    margin: 10px;
+}
+
+/* Estilos específicos para pantallas grandes (992px en adelante) */
+@media only screen and (min-width: 992px) {
+  body {
+    margin: 0 auto; /* Centrar el contenido en pantallas grandes */
+  }
+
+  .nombre {
+    display: block;
+  }
+}
