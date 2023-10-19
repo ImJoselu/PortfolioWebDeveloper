@@ -9,13 +9,20 @@
   --opacidad: 0.5;
 }
 
-.infoMain {
-  text-align: center;
-  padding: 20px;
+.h1 {
+  min-height: 2em; /* Ajusta según sea necesario */
 }
 
+.divMain {
+  min-height: 100% !important;
+}
+
+.body {
+  min-height: 100vh;
+  overflow-y: scroll; /* Forzar siempre la barra de desplazamiento vertical */
+}
 .hashtags {
-  padding: 20px 10% 20px 10%;
+  padding: 20px 10% 0 10%;
   display: flex;
   text-align: center;
   align-items: center;
@@ -29,7 +36,9 @@
 }
 
 .inforMasSobreMi,
-.educacion {
+.educacion,
+.infoMain,
+.curriculum{
   text-align: center;
   padding: 20px;
 }
@@ -81,6 +90,11 @@
     margin-bottom: 3px;
 }
 
+.h1 {
+  font-family: var(--tipo-titular);
+  font-size: 3vh;
+}
+
 /* Estilos específicos para pantallas grandes (992px en adelante) */
 @media only screen and (min-width: 992px) {
   body {
@@ -89,5 +103,43 @@
 
   .nombre {
     display: block;
+  }
+  /* ENCARGADO DE ENCAPSULAR TODO EL TITULO*/
+  .divMain {
+    display: flex;
+    padding: 20px 100px 20px 100px;
+    justify-content: center;
+    
+  }
+
+  .infoMain {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+  }
+
+  .imagenJL {
+    display: flex;
+    align-content: center;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .imagenJL > img {
+    border-radius: 50%;
+  }
+
+  /* ENCARGADO DE ENCAPSULAR TODO EL TITULO*/
+  .p {
+    font-size: 2vh;
+
+  }
+  .titulos ,.subtitulo,.h5 {
+    font-size: 3vh;
+  }
+  /* ENCARGADO DE ENCAPSULAR EDUCACION Y SOBRE MI*/
+  .educacion , .inforMasSobreMi , .curriculum{
+    padding: 20px 200px 20px 200px;
   }
 }

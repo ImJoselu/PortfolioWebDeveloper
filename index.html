@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+
+<head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="css/general.css" />
@@ -10,13 +11,18 @@
     <link rel="shortcut icon" href="media/icon.png" type="image/x-icon" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;1,100;1,300&display=swap" rel="stylesheet"/>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400;1,500;1,600&display=swap" rel="stylesheet"/>
-    <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;1,100;1,300&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;1,100;1,300&display=swap"
+        rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400;1,500;1,600&display=swap"
+        rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;1,100;1,300&display=swap"
+        rel="stylesheet" />
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
     <title>Portafolio Jose Luis</title>
-  </head>
-  <body>
+</head>
+
+<body>
     <header class="header">
         <nav class="navegacion">
             <div class="navegacion-div">
@@ -33,45 +39,34 @@
         </nav>
     </header>
     <main class="main">
-        <div class="imagenJL">
-            <img src="media/yo.png" alt="ImgJL">
-        </div>
-        <div class="infoMain">
-            <h1 class="h1" hidden>Hola, mundo! Mi nombre es Jose</h1>
-            <h1 class="h1">Hola</h1>
-            <div class="div">
-                <h2 class="h2">Soy Jose Luis, <span class="negrita">desarrollador web </span> de España</h2>
-                <p class="p">Me encanta programar y no parar de aprender, estudié <span class="negrita">Java</span> y hice prácticas
-                con <span class="negrita">PHP</span>. <br>Desde mi <span class="negrita">inicio</span> en las clases ya sabia que me encantaba programar y implementar
-                mis locas ideas en código para hacerlas realidad y darles un sentido. Desde el diseño a implementación pasando por la optimización de soluciones. 
-                Me encanta enfrentar desafíos, aprender y resolver problemas de forma efectiva.</p>
-                <div class="hashtags">
-                    <span>#Java</span><span>#PHP</span><span>#Vue.js</span><span>#HTML</span><span>#CSS</span><span>#JS</span>
+        <div class="divMain">
+            <div class="imagenJL">
+                <img src="media/yo.png" alt="ImgJL">
+            </div>
+            <div class="infoMain">
+                <div class="salvacion">
+                    <h1 class="h1" id="text-container"><h1>
+                </div>
+                <div class="div titulocontenido">
+                    <h2 class="h2">Desarrollador web | Programador</h2>
+                    <p class="p">Me encanta programar y no parar de aprender, estudié <span class="negrita">Java</span>
+                        y hice prácticas
+                        con <span class="negrita">PHP</span>. <br>Desde mi <span class="negrita">inicio</span> en las
+                        clases ya sabia que me encantaba programar y implementar
+                        mis locas ideas en código para hacerlas realidad y darles un sentido. Desde el diseño a
+                        implementación pasando por la optimización de soluciones.
+                        Me encanta enfrentar desafíos, aprender y resolver problemas de forma efectiva.</p>
+                    <div class="hashtags">
+                        <span>#Java</span><span>#PHP</span><span>#Vue.js</span><span>#HTML</span><span>#CSS</span><span>#JS</span>
+                    </div>
                 </div>
             </div>
         </div>
         <!-- AQUI UN BARRA DE SEPARACION-->
         <div class="separacion"></div>
         <!-- AQUI UN BARRA DE SEPARACION-->
-        <div class="inforMasSobreMi">
-            <h3 class="h3 titulos">Mas sobre mi</h3>
-            <p class="p">Vivo en <span class="negrita">Valencia/España</span>. Desde los 16 años me <span class="negrita">encanta programar</span> construyendo 
-                y destruyendo webs por simple diversión. Soy un joven de 20 años, con un título de 
-                grado superior en <span class="negrita">Desarrollo de Aplicaciones Web</span> que respalda 
-                mi formación académica. Mi <span class="negrita">objetivo principal</span> es obtener experiencia laboral en 
-                este emocionante campo. Estoy entusiasmado por la oportunidad de aplicar mis <span class="negrita">habilidades</span> y 
-                <span class="negrita">conocimientos</span> adquiridos en un entorno laboral real, <span class="negrita">contribuyendo</span> al éxito del 
-                equipo y continuando mi crecimiento profesional en el campo del desarrollo web.
-            </p>
-            <br>
-            <p class="p">Posibilidad de incorporación <span class="negrita">inmediata</span>, además de posibilidad de <span class="negrita">desplazamiento</span> a 
-                Palma de Mallorca sin problemas.
-            </p>
-        </div>
-        <!-- AQUI UN BARRA DE SEPARACION-->
-        <div class="separacion"></div>
-        <!-- AQUI UN BARRA DE SEPARACION-->
-        <div class="educacion">
+        <div class="divMainDos"> 
+            <div class="educacion">
             <h3 class="h3 titulos">Educación y Experiencia</h3>
             <div class="tarjeta">
                 <button class="botonTarjeta" onclick="mostrarInformacion()">
@@ -80,17 +75,21 @@
                 <div id="tarjetaInformacion1" class="tarjetaInformacion">
                     <h4 class="subtitulo">Grado Superior Desarrollo de Aplicaciones Web</h4>
                     <h5 class="h5">( 2021 - 2023 )</h5>
-                    <p class="p">Me enseñaron los fundamentos básicos de la progrmación y el ambiente de trabajo en equipo como
+                    <p class="p">Me enseñaron los fundamentos básicos de la programación y el ambiente de trabajo en
+                        equipo como
                         si fuera una empresa. Programando en Java, utilizando SpringBoot y Netbeans.
                     </p>
-                    <p class="p"><span class="negrita">Aptitudes:</span> Modelo-Vista-Controlador (MVC) · Spring Framework · JavaScript · Git · MySQL · PhpMyAdmin · HTML5 · Hojas de estilos en cascada (CSS) · Bootstrap · Spring Boot · Spring Security · Java · Programación</p>
+                    <p class="p"><span class="negrita">Aptitudes:</span> Modelo-Vista-Controlador (MVC) · Spring
+                        Framework · JavaScript · Git · MySQL · PhpMyAdmin · HTML5 · Hojas de estilos en cascada (CSS) ·
+                        Bootstrap · Spring Boot · Spring Security · Java · Programación</p>
                     <h4 class="subtitulo">Grado Medio Sistemas Microinformáticos y Redes</h4>
                     <h5 class="h5">( 2019 - 2021 )</h5>
-                    <p class="p">Realizar trabajos de instalación, configuración y mantenimiento de 
-                        sistemas microinformáticos, aislados o en red, así como redes locales en pequeños 
-                        entornos, asegurando su funcionalidad y aplicando los protocolos de calidad, 
+                    <p class="p">Realizar trabajos de instalación, configuración y mantenimiento de
+                        sistemas microinformáticos, aislados o en red, así como redes locales en pequeños
+                        entornos, asegurando su funcionalidad y aplicando los protocolos de calidad,
                         seguridad y respeto</p>
-                    <p class="p"><span class="negrita">Aptitudes:</span> Sistemas operativos · Bases de datos · Office</p>
+                    <p class="p"><span class="negrita">Aptitudes:</span> Sistemas operativos · Bases de datos · Office
+                    </p>
                 </div>
                 <div class="separacionSegundaVersion"></div>
                 <button class="botonTarjeta" onclick="mostrarInformacionDos()">
@@ -104,10 +103,49 @@
                         Trabajé con el equipo de diseño para traducir los requisitos del cliente.
                         Las prácticas duraron 3 meses.
                     </p>
-                    <p class="p"><span class="negrita">Aptitudes:</span> JIRA · MariaDB · Trabajo en equipo · Trabajo en remoto · Desarrollo front end · Desarrollo back end · Vue.js · Laravel · HTML · JavaScript · Git · Hojas de estilos en cascada (CSS) · Bases de datos · PHP</p>
+                    <p class="p"><span class="negrita">Aptitudes:</span> JIRA · MariaDB · Trabajo en equipo · Trabajo en
+                        remoto · Desarrollo front end · Desarrollo back end · Vue.js · Laravel · HTML · JavaScript · Git
+                        · Hojas de estilos en cascada (CSS) · Bases de datos · PHP</p>
                 </div>
-
             </div>
+        </div>
+        <!-- AQUI UN BARRA DE SEPARACION-->
+        <div class="separacion"></div>
+        <!-- AQUI UN BARRA DE SEPARACION-->
+        <div class="inforMasSobreMi">
+            <h3 class="h3 titulos">Mas sobre mi</h3>
+            <p class="p">Vivo en <span class="negrita">Valencia/España</span>. Desde los 16 años me <span
+                    class="negrita">encanta programar</span> construyendo
+                y destruyendo webs por simple diversión. Soy un joven de 20 años, con un título de
+                grado superior en <span class="negrita">Desarrollo de Aplicaciones Web</span> que respalda
+                mi formación académica. Mi <span class="negrita">objetivo principal</span> es obtener experiencia
+                laboral en
+                este emocionante campo. Estoy entusiasmado por la oportunidad de aplicar mis <span
+                    class="negrita">habilidades</span> y
+                <span class="negrita">conocimientos</span> adquiridos en un entorno laboral real, <span
+                    class="negrita">contribuyendo</span> al éxito del
+                equipo y continuando mi crecimiento profesional en el campo del desarrollo web.
+            </p>
+            <br>
+            <p class="p">Posibilidad de incorporación <span class="negrita">inmediata</span>, además de posibilidad de
+                <span class="negrita">desplazamiento</span> a
+                Palma de Mallorca sin problemas.
+            </p>
+        </div></div>
+       
+        <!-- AQUI UN BARRA DE SEPARACION-->
+        <div class="separacion"></div>
+        <!-- AQUI UN BARRA DE SEPARACION-->
+        <div class="curriculum">
+            <h3 class="h3 titulos">Curriculum</h3>
+            <a href="https://www.canva.com/design/DAFriXOwd90/bL780IttZ4nGzyfpSjJxoA/view?utm_content=DAFriXOwd90&utm_campaign=designshare&utm_medium=%20link&utm_source=publishsharelink"
+                class="a">
+                <button class="botonTarjeta">
+                    <h4 class="h4">
+                        <p class="p">Pulsa aqui para visualizar</p>
+                    </h4>
+                </button>
+            </a>
         </div>
         <!-- AQUI UN BARRA DE SEPARACION-->
         <div class="separacion"></div>
@@ -115,10 +153,14 @@
     </main>
     <footer class="footer">
         <div class="divFooter">
-            <a title="Email" href="mailto:jltortolacer@gmail.com" class="a"><img src="media/mail.png" alt="Mail" class="imgrrss"></a>
-            <a title="GitHub" href="https://github.com/ImJoselu" class="a"><img src="media/github.png" alt="GitHub" class="imgrrss"></a>
-            <a title="LinkedIn" href="https://www.linkedin.com/in/jostorcer/" class="a"><img src="media/in.png" alt="LinkedIn" class="imgrrss"></a>     
+            <a title="Email" href="mailto:jltortolacer@gmail.com" class="a"><img src="media/mail.png" alt="Mail"
+                    class="imgrrss"></a>
+            <a title="GitHub" href="https://github.com/ImJoselu" class="a"><img src="media/github.png" alt="GitHub"
+                    class="imgrrss"></a>
+            <a title="LinkedIn" href="https://www.linkedin.com/in/jostorcer/" class="a"><img src="media/in.png"
+                    alt="LinkedIn" class="imgrrss"></a>
         </div>
     </footer>
-  </body>
+</body>
+
 </html>
