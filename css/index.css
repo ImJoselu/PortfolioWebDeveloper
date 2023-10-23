@@ -22,13 +22,21 @@
   overflow-y: scroll; /* Forzar siempre la barra de desplazamiento vertical */
 }
 .hashtags {
-  padding: 20px 10% 0 10%;
-  display: flex;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr); /* Esto creará dos columnas de igual tamaño */
+  gap: 5px;
+
   text-align: center;
   align-items: center;
-  justify-content: space-between;
-  font-weight: bold;
+  justify-content: center;
 }
+
+.hashtags > img {
+  object-fit: cover;
+  width: 100px;
+  height: 100px;
+}
+
 
 .inforMasSobreMi,
 .educacion,
@@ -106,6 +114,23 @@
     justify-content: center;
     
   }
+
+  .hashtags {
+    display: flex; /* Utilizamos flexbox en lugar de grid */
+    flex-wrap: wrap; /* Para que los elementos se envuelvan a la siguiente línea si es necesario */
+    justify-content: center; /* Centramos horizontalmente los elementos */
+    align-items: center; /* Centramos verticalmente los elementos */
+    gap: 5px; /* Espacio entre elementos */
+  
+    text-align: center; /* Alineamos el texto al centro (opcional si tienes texto dentro) */
+  }
+  
+  .hashtags > img {
+    object-fit: cover;
+    width: 100px;
+    height: 100px;
+  }
+  
 
   .infoMain {
     display: flex;
