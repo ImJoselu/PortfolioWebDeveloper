@@ -114,7 +114,7 @@
     justify-content: center;  
   }
 
-  .divMainDos  ,  .curriculum{
+  .divMainDos , .inforMasSobreMi , .curriculum{
     margin-left: 20%;
     margin-right: 20%;
   }
@@ -167,4 +167,6 @@
   .educacion , .inforMasSobreMi , .curriculum{
     padding: 20px 200px 20px 200px;
   }
+
+   
 }
