@@ -111,8 +111,12 @@
   .divMain {
     display: flex;
     padding: 20px 100px 20px 100px;
-    justify-content: center;
-    
+    justify-content: center;  
+  }
+
+  .divMainDos  ,  .curriculum{
+    margin-left: 20%;
+    margin-right: 20%;
   }
 
   .hashtags {
@@ -120,9 +124,10 @@
     flex-wrap: wrap; /* Para que los elementos se envuelvan a la siguiente línea si es necesario */
     justify-content: center; /* Centramos horizontalmente los elementos */
     align-items: center; /* Centramos verticalmente los elementos */
-    gap: 5px; /* Espacio entre elementos */
+    gap: 7px; /* Espacio entre elementos */
   
     text-align: center; /* Alineamos el texto al centro (opcional si tienes texto dentro) */
+    margin-top: 20px;
   }
   
   .hashtags > img {
