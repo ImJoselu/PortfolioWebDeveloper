@@ -33,6 +33,7 @@
                 <div class="puntoancla">
                     <a href="./" class="a ancla">Home</a>
                     <a href="./proyectos.html" class="a ancla">Proyectos</a>
+                    <a href="./contacto.html" class="a ancla">Contacto</a>
                 </div>
             </div>
         </nav>
@@ -72,30 +73,61 @@
         <!-- AQUI UN BARRA DE SEPARACION-->
         <div class="educacion">
             <h3 class="h3 titulos">Educación y Certificados</h3>
-
+            <div class="educacionTarjetas">
+                <div class="tarjeta">
+                    <h4 class="h4">Certificado <br> Profesional Java</h4>
+                    <h5 class="h5 tituloTarjetas">( 2023 )</h5>
+                    <img src="media/certificado/certificado.png" alt="Certificado" class="certificado">
+                </div>
+                <div class="tarjeta">
+                    <h4 class="h4 ">Grado Superior <br> Desarrollo de Aplicaciones Web</h4>
+                    <h5 class="h5 tituloTarjetas">( 2021 - 2023 )</h5>
+                    <p class="p">Me enseñaron los fundamentos básicos de la programación y el ambiente de trabajo en
+                        equipo simulando el ambiente de una empresa. Programando en Java, utilizando SpringBoot y Netbeans.
+                    </p>
+                    <div class="iconosEstudios">
+                        <img src="media/icons/vs.png" alt="" class="img imagenesEstudios">
+                        <img src="media/icons/springboot.png" alt="" class="img imagenesEstudios">
+                    </div>
+                </div>
+                <div class="tarjeta">
+                    <h4 class="h4 ">Grado Medio <br> Sistemas Microinformáticos y Redes</h4>
+                    <h5 class="h5 tituloTarjetas">( 2019 - 2021 )</h5>
+                    <p class="p">Realizar trabajos de instalación, configuración y mantenimiento de
+                            sistemas microinformáticos.
+                    </p>
+                </div>
+            </div>
         </div>
         <!-- AQUI UN BARRA DE SEPARACION-->
         <div class="separacion"></div>
         <!-- AQUI UN BARRA DE SEPARACION-->
         <div class="inforMasSobreMi">
             <h3 class="h3 titulos">Más sobre mi</h3>
-            <p class="p">Vivo en <span class="negrita">Valencia/España</span>. Desde los 16 años me <span
-                    class="negrita">encanta programar</span> construyendo
-                y destruyendo webs por simple diversión. Soy un joven de 20 años, con un título de
-                grado superior en <span class="negrita">Desarrollo de Aplicaciones Web</span> que respalda
-                mi formación académica. Mi <span class="negrita">objetivo principal</span> es obtener experiencia
-                laboral en
-                este emocionante campo. Estoy entusiasmado por la oportunidad de aplicar mis <span
-                    class="negrita">habilidades</span> y
-                <span class="negrita">conocimientos</span> adquiridos en un entorno laboral real, <span
-                    class="negrita">contribuyendo</span> al éxito del
-                equipo y continuando mi crecimiento profesional en el campo del desarrollo web.
-            </p>
+            <button class="botonTarjeta" onclick="mostrarInformacion()">
+                <h4 class="h4">👇 Desplegable 👇</h4>
+            </button>
+            <div id="tarjetaInformacion1" class="tarjetaInformacion">
+                <br>
+                <p class="p">Vivo en <span class="negrita">Valencia/España</span>. Desde los 16 años me <span
+                        class="negrita">encanta programar</span> construyendo
+                    y destruyendo webs por simple diversión. Soy un joven de 20 años, con un título de
+                    grado superior en <span class="negrita">Desarrollo de Aplicaciones Web</span> que respalda
+                    mi formación académica. Mi <span class="negrita">objetivo principal</span> es obtener experiencia
+                    laboral en
+                    este emocionante campo. Estoy entusiasmado por la oportunidad de aplicar mis <span
+                        class="negrita">habilidades</span> y
+                    <span class="negrita">conocimientos</span> adquiridos en un entorno laboral real, <span
+                        class="negrita">contribuyendo</span> al éxito del
+                    equipo y continuando mi crecimiento profesional en el campo del desarrollo web.
+                </p>
+            
             <br>
             <p class="p">Posibilidad de incorporación <span class="negrita">inmediata</span>, además de posibilidad de
                 <span class="negrita">desplazamiento</span> a
                 Palma de Mallorca sin problemas.
             </p>
+            </div>
             <br>
             <p class="p">No olvides que al <span class="negrita">final</span> de la página tienes mis redes de <span class="negrita">contacto</span> </p>
         </div>
