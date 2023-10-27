@@ -21,6 +21,14 @@
   min-height: 100vh;
   overflow-y: scroll; /* Forzar siempre la barra de desplazamiento vertical */
 }
+
+.image-container {
+  display: flex;
+  justify-content: center; /* Centrar horizontalmente en la pantalla */
+  align-items: center; /* Centrar verticalmente en la pantalla */
+  height: 55vh; /* Altura del viewport */
+}
+
 .hashtags {
   display: grid;
   grid-template-columns: repeat(2, 1fr); /* Esto creará dos columnas de igual tamaño */
@@ -37,6 +45,9 @@
   height: 100px;
 }
 
+.divMainDos{
+text-align: center;
+}
 
 .inforMasSobreMi,
 .educacion,
