@@ -47,3 +47,36 @@ function type() {
 document.addEventListener('DOMContentLoaded', function() {
   setTimeout(type, speed);
 });
+
+function scrollToTop() {
+  window.scroll({
+      top: 0,
+      behavior: 'smooth'
+  });
+}
+
+function scrollToBottom() {
+  window.scroll({
+      top: document.body.scrollHeight,
+      behavior: 'smooth'
+  });
+}
+
+document.addEventListener("DOMContentLoaded", function() {
+  const scrollToTopButton = document.getElementById("scrollToTop");
+  const scrollToBottomButton = document.getElementById("scrollToBottom");
+
+  window.addEventListener("scroll", function() {
+      if (window.pageYOffset > 100) {
+          scrollToTopButton.style.display = "block";
+      } else {
+          scrollToTopButton.style.display = "none";
+      }
+
+      if (window.innerHeight + window.pageYOffset < document.body.offsetHeight - 100) {
+          scrollToBottomButton.style.display = "block";
+      } else {
+          scrollToBottomButton.style.display = "none";
+      }
+  });
+});
