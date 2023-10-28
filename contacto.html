@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
+  <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="css/general.css" />
@@ -11,31 +10,90 @@
     <link rel="shortcut icon" href="media/icon.png" type="image/x-icon" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;1,100;1,300&display=swap"
-        rel="stylesheet" />
     <link
-        href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400;1,500;1,600&display=swap"
-        rel="stylesheet" />
-    <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;1,100;1,300&display=swap"
-        rel="stylesheet" />
+      href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;1,100;1,300&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400;1,500;1,600&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;1,100;1,300&display=swap"
+      rel="stylesheet"
+    />
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
     <title>Portafolio Jose Luis</title>
-</head>
-<body>
+  </head>
+  <body>
     <header class="header">
-        <nav class="navegacion">
-            <div class="navegacion-div">
-                <div class="logo">
-                    <img src="media/icon.png" alt="/" />
-                    <p class="nombre">Jose Luis Tórtola -<span class="trabajo"> Desarrollador Web</span></p>
-                </div>
-                <div class="puntoancla">
-                    <a href="./" class="a ancla">Home</a>
-                    <a href="./proyectos.html" class="a ancla">Proyectos</a>
-                    <a href="./contacto.html" class="a ancla">Contacto</a>
-                </div>
-            </div>
-        </nav>
+      <nav class="navegacion">
+        <div class="navegacion-div">
+          <div class="logo">
+            <img src="media/icon.png" alt="/" />
+            <p class="nombre">
+              Jose Luis Tórtola -<span class="trabajo"> Desarrollador Web</span>
+            </p>
+          </div>
+          <div class="puntoancla">
+            <a href="./" class="a ancla">Home</a>
+            <a href="./proyectos.html" class="a ancla">Proyectos</a>
+            <a href="./contacto.html" class="a ancla">Contacto</a>
+          </div>
+        </div>
+      </nav>
     </header>
-</body>
+    <section class="contact-form">
+      <div class="container">
+        <h1>Contacto</h1>
+        <form id="contact-form" method="post">
+          <div class="form-group">
+            <label for="nombre">Nombre:</label>
+            <input type="text" id="nombre" name="nombre" required />
+          </div>
+
+          <div class="form-group">
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required />
+          </div>
+
+          <div class="form-group">
+            <label for="mensaje">Mensaje:</label>
+            <textarea id="mensaje" name="mensaje" required></textarea>
+          </div>
+
+          <div class="form-group">
+            <input type="submit" value="Enviar" />
+          </div>
+        </form>
+      </div>
+    </section>
+
+    <div class="message-popup" id="message-popup">
+      <div class="message-content">
+        <i class="fa fa-check-circle"></i>
+        <p>Mensaje enviado con éxito. ¡Gracias por contactarnos!</p>
+      </div>
+    </div>
+    <!-- AQUI UN BARRA DE SEPARACION-->
+    <div class="separacion"></div>
+    <!-- AQUI UN BARRA DE SEPARACION-->
+    <footer class="footer">
+      <div class="divFooter">
+        <a title="Email" href="mailto:jltortolacer@gmail.com" class="a"
+          ><img src="media/mail.png" alt="Mail" class="imgrrss"
+        /></a>
+        <a title="GitHub" href="https://github.com/ImJoselu" class="a"
+          ><img src="media/github.png" alt="GitHub" class="imgrrss"
+        /></a>
+        <a
+          title="LinkedIn"
+          href="https://www.linkedin.com/in/jostorcer/"
+          class="a"
+          ><img src="media/in.png" alt="LinkedIn" class="imgrrss"
+        /></a>
+      </div>
+    </footer>
+    <script src="js/contacto.js"></script>
+  </body>
 </html>
