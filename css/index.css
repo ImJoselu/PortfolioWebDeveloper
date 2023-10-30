@@ -50,6 +50,7 @@ text-align: center;
 
 .inforMasSobreMi,
 .educacion,
+.experiencia,
 .infoMain,
 .curriculum{
   text-align: center;
@@ -208,7 +209,7 @@ text-align: center;
   .educacionTarjetas {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
-    gap: 20px;
+    gap: 50px;
   }
 
   /* ENCARGADO DE ENCAPSULAR EDUCACION Y SOBRE MI*/

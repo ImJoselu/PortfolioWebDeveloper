@@ -41,6 +41,25 @@ body {
     border-radius: 5px;
     cursor: pointer;
 }
+/* Estilos para el botón de envío del formulario */
+.contact-form button[type="submit"] {
+    background-color: var(--negro);
+    color: var(--blanco);
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    border: 1px solid var(--negro);
+    transition: background 0.5s; /* Animación de cambio de color al pasar el cursor */
+}
+
+.contact-form button[type="submit"]:hover {
+    background: cadetblue; /* Nuevo fondo al pasar el cursor sobre el botón */
+}
+
+
+
+
 @media only screen and (min-width: 768px) and (max-width: 991px) {
     /* Ajusta los estilos según tus preferencias para pantallas medianas */
     
