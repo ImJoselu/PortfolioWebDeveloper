@@ -222,6 +222,17 @@ text-align: center;
     width: 20%;
     margin: 20px;
   }
+
+  .experienciaLaboralDiv {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+  }
   
+  .experienciaLaboralDos {
+    background-image: url('/media/experienciaLaboralLogo/tugesto.png') !important;
+    background-size: 15% auto;
+    background-position: top right;
+    background-repeat: no-repeat;
+    }
    
 }

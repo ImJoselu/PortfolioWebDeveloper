@@ -80,22 +80,3 @@ document.addEventListener("DOMContentLoaded", function() {
       }
   });
 });
-
-$(document).ready(function() {
-  // Cuando se envía el formulario
-  $("#contact-form").submit(function(e) {
-      e.preventDefault(); // Evita que se recargue la página
-
-      // Simulación de envío de datos (puedes reemplazar esto con una solicitud AJAX real)
-      setTimeout(function() {
-          // Mostrar el mensaje de éxito
-          $("#message-popup").addClass("show");
-          $("#contact-form")[0].reset(); // Limpiar el formulario
-
-          // Ocultar el mensaje después de 3 segundos
-          setTimeout(function() {
-              $("#message-popup").removeClass("show");
-          }, 3000);
-      }, 1500);
-  });
-});
