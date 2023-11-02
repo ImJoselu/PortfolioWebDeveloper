@@ -229,7 +229,7 @@ text-align: center;
   }
   
   .experienciaLaboralDos {
-    background-image: url('/media/experienciaLaboralLogo/tugesto.png') !important;
+    background-image: url('../media/experienciaLaboralLogo/tugesto.png') !important;
     background-size: 15% auto;
     background-position: top right;
     background-repeat: no-repeat;
