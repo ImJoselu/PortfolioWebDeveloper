@@ -21,17 +21,36 @@
   min-height: 100vh;
   overflow-y: scroll; /* Forzar siempre la barra de desplazamiento vertical */
 }
-.hashtags {
-  padding: 20px 10% 0 10%;
+
+.image-container {
   display: flex;
+  justify-content: center; /* Centrar horizontalmente en la pantalla */
+  align-items: center; /* Centrar verticalmente en la pantalla */
+}
+
+.hashtags {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr); /* Esto creará dos columnas de igual tamaño */
+  gap: 5px;
+
   text-align: center;
   align-items: center;
-  justify-content: space-between;
-  font-weight: bold;
+  justify-content: center;
+}
+
+.hashtags > img {
+  object-fit: cover;
+  width: 100px;
+  height: 100px;
+}
+
+.divMainDos{
+text-align: center;
 }
 
 .inforMasSobreMi,
 .educacion,
+.experiencia,
 .infoMain,
 .curriculum{
   text-align: center;
@@ -90,6 +109,22 @@
   font-size: 3vh;
 }
 
+.certificado {
+  border: 1px solid black;
+}
+
+.iconosEstudios {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+
+  margin-top: 10px;
+}
+.imagenesEstudios {
+  height: 50px;
+  width: 50px;
+}
+
 /* Estilos específicos para pantallas grandes (992px en adelante) */
 @media only screen and (min-width: 992px) {
   body {
@@ -103,9 +138,34 @@
   .divMain {
     display: flex;
     padding: 20px 100px 20px 100px;
-    justify-content: center;
-    
+    justify-content: center;  
   }
+
+  .image-container{
+    height: auto; /* Altura del viewport */
+  }
+  .divMainDos , .inforMasSobreMi , .curriculum{
+    margin-left: 20%;
+    margin-right: 20%;
+  }
+
+  .hashtags {
+    display: flex; /* Utilizamos flexbox en lugar de grid */
+    flex-wrap: wrap; /* Para que los elementos se envuelvan a la siguiente línea si es necesario */
+    justify-content: center; /* Centramos horizontalmente los elementos */
+    align-items: center; /* Centramos verticalmente los elementos */
+    gap: 7px; /* Espacio entre elementos */
+  
+    text-align: center; /* Alineamos el texto al centro (opcional si tienes texto dentro) */
+    margin-top: 20px;
+  }
+  
+  .hashtags > img {
+    object-fit: cover;
+    width: 100px;
+    height: 100px;
+  }
+  
 
   .infoMain {
     display: flex;
@@ -127,14 +187,52 @@
 
   /* ENCARGADO DE ENCAPSULAR TODO EL TITULO*/
   .p {
-    font-size: 2vh;
-
+    font-size: 2.5vh;
   }
-  .titulos ,.subtitulo,.h5 {
+  
+  .titulos {
     font-size: 3vh;
   }
+
+  .subtitulo,.h5 {
+    font-size: 2.7vh;
+  }
+  
+  .h4 {
+    font-size: 2.6vh;
+  }
+
+  .tituloTarjetas{
+    margin-bottom: 5%;
+  }
+
+  .educacionTarjetas {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 50px;
+  }
+
   /* ENCARGADO DE ENCAPSULAR EDUCACION Y SOBRE MI*/
   .educacion , .inforMasSobreMi , .curriculum{
     padding: 20px 200px 20px 200px;
   }
+
+  .imagenesEstudios {
+    height: 20%;
+    width: 20%;
+    margin: 20px;
+  }
+
+  .experienciaLaboralDiv {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+  
+  .experienciaLaboralDos {
+    background-image: url('../media/experienciaLaboralLogo/tugesto.png') !important;
+    background-size: 15% auto;
+    background-position: top right;
+    background-repeat: no-repeat;
+    }
+   
 }

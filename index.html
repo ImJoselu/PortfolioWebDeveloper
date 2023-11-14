@@ -18,6 +18,7 @@
         rel="stylesheet" />
     <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;1,100;1,300&display=swap"
         rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
     <title>Portafolio Jose Luis</title>
 </head>
@@ -27,17 +28,20 @@
         <nav class="navegacion">
             <div class="navegacion-div">
                 <div class="logo">
-                    <img src="media/icon.png" alt="/" />
+                    <img src="media/icon.png" alt="/" title="Logo" />
                     <p class="nombre">Jose Luis Tórtola -<span class="trabajo"> Desarrollador Web</span></p>
                 </div>
                 <div class="puntoancla">
-                    <a href="./" class="a ancla">Home</a>
-                    <a href="./proyectos.html" class="a ancla">Proyectos</a>
+                    <a href="./" class="a ancla" title="Home" >Home</a>
+                    <a href="./proyectos.html" class="a ancla" title="Proyectos" >Proyectos</a>
+                    <a href="./contacto.html" class="a ancla" title="Contacto">Contacto</a>
                 </div>
             </div>
         </nav>
     </header>
     <main class="main">
+        <div id="scrollToTop" class="scroll-button" onclick="scrollToTop()"><i class="fas fa-arrow-up"></i></div>
+        <div id="scrollToBottom" class="scroll-button" onclick="scrollToBottom()"><i class="fas fa-arrow-down"></i></div>
         <div class="divMain">
             <div class="imagenJL">
                 <img src="media/yo.png" alt="ImgJL">
@@ -49,14 +53,20 @@
                 <div class="div titulocontenido">
                     <h2 class="h2">Desarrollador web | Programador</h2>
                     <p class="p">Me encanta programar y no parar de aprender, estudié <span class="negrita">Java</span>
-                        y hice prácticas
-                        con <span class="negrita">PHP</span>. <br>Desde mi <span class="negrita">inicio</span> en las
-                        clases ya sabia que me encantaba programar y implementar
-                        mis locas ideas en código para hacerlas realidad y darles un sentido. Desde el diseño a
+                        e hice prácticas utilizando <span class="negrita">PHP</span>. <br>Desde mi <span class="negrita">inicio</span> en las
+                        clases ya sabía que me encantaba programar e implementar
+                        mis locas ideas en código para hacerlas realidad y darles un sentido. Desde el diseño hasta la
                         implementación pasando por la optimización de soluciones.
                         Me encanta enfrentar desafíos, aprender y resolver problemas de forma efectiva.</p>
-                    <div class="hashtags">
-                        <span>#Java</span><span>#PHP</span><span>#Vue.js</span><span>#HTML</span><span>#CSS</span><span>#JS</span>
+                    <div class="image-container">
+                        <div class="hashtags">
+                            <img src="media/icons/java.jpg" alt="java" class="img" title="Java">
+                            <img src="media/icons/js.png" alt="js" class="img" title="JavaScript">
+                            <img src="media/icons/laravel.png" alt="laravel" class="img" title="Laravel">
+                            <img src="media/icons/vue.png" alt="vue" class="img" title="Vue.js">
+                            <img src="media/icons/php.png" alt="php" class="img" title="PHP">
+                            <img src="media/icons/mysql.png" alt="sql" class="img" title="MySQL">
+                        </div>
                     </div>
                 </div>
             </div>
@@ -64,47 +74,59 @@
         <!-- AQUI UN BARRA DE SEPARACION-->
         <div class="separacion"></div>
         <!-- AQUI UN BARRA DE SEPARACION-->
-        <div class="divMainDos"> 
-            <div class="educacion">
-            <h3 class="h3 titulos">Educación y Experiencia</h3>
-            <div class="tarjeta">
-                <button class="botonTarjeta" onclick="mostrarInformacion()">
-                    <h4 class="h4">Educacion</h4>
-                </button>
-                <div id="tarjetaInformacion1" class="tarjetaInformacion">
-                    <h4 class="subtitulo">Grado Superior Desarrollo de Aplicaciones Web</h4>
-                    <h5 class="h5">( 2021 - 2023 )</h5>
-                    <p class="p">Me enseñaron los fundamentos básicos de la programación y el ambiente de trabajo en
-                        equipo como
-                        si fuera una empresa. Programando en Java, utilizando SpringBoot y Netbeans.
+        <div class="educacion">
+            <h3 class="h3 titulos">Educación y Certificados</h3>
+            <div class="educacionTarjetas">
+                <div class="tarjeta">
+                    <h4 class="h4">Certificado <br> Profesional Java</h4>
+                    <h5 class="h5 tituloTarjetas">( 2023 )</h5>
+                    <img src="media/certificado/certificado.png" alt="Certificado" class="certificado">
+                </div>
+                <div class="tarjeta">
+                    <h4 class="h4 ">Grado Superior <br> Desarrollo de Aplicaciones Web</h4>
+                    <h5 class="h5 tituloTarjetas">( 2021 - 2023 )</h5>
+                    <p class="p">Me enseñaron los fundamentos básicos de la programación y la importancia de un buen trabajo en
+                        equipo simulando el ambiente de una empresa. Programando en Java, utilizando Visual Studio Code y SpringBoot.
                     </p>
-                    <p class="p"><span class="negrita">Aptitudes:</span> Modelo-Vista-Controlador (MVC) · Spring
-                        Framework · JavaScript · Git · MySQL · PhpMyAdmin · HTML5 · Hojas de estilos en cascada (CSS) ·
-                        Bootstrap · Spring Boot · Spring Security · Java · Programación</p>
-                    <h4 class="subtitulo">Grado Medio Sistemas Microinformáticos y Redes</h4>
-                    <h5 class="h5">( 2019 - 2021 )</h5>
+                    <div class="iconosEstudios">
+                        <img src="media/icons/vs.png" alt="" class="img imagenesEstudios" title="Visual Studio Code">
+                        <img src="media/icons/springboot.png" alt="" class="img imagenesEstudios" title="Spring Boot">
+                    </div>
+                </div>
+                <div class="tarjeta">
+                    <h4 class="h4 ">Grado Medio <br> Sistemas Microinformáticos y Redes</h4>
+                    <h5 class="h5 tituloTarjetas">( 2019 - 2021 )</h5>
                     <p class="p">Realizar trabajos de instalación, configuración y mantenimiento de
-                        sistemas microinformáticos, aislados o en red, así como redes locales en pequeños
-                        entornos, asegurando su funcionalidad y aplicando los protocolos de calidad,
-                        seguridad y respeto</p>
-                    <p class="p"><span class="negrita">Aptitudes:</span> Sistemas operativos · Bases de datos · Office
+                            sistemas microinformáticos.
                     </p>
                 </div>
-                <div class="separacionSegundaVersion"></div>
-                <button class="botonTarjeta" onclick="mostrarInformacionDos()">
-                    <h4 class="h4">Experiencia</h4>
-                </button>
-                <div id="tarjetaInformacion2" class="tarjetaInformacion">
+            </div>
+        </div>
+        <!-- AQUI UN BARRA DE SEPARACION-->
+        <div class="separacion"></div>
+        <!-- AQUI UN BARRA DE SEPARACION-->
+        <div class="experiencia">
+            <h3 class="h3 titulos">Experiencia</h3>
+            <div  class="experienciaLaboralDiv">
+                <div class="div experienciaLaboralUno">
+                    
+                </div>
+                <div class="div experienciaLaboralDos">
                     <h4 class="subtitulo">Prácticas en <span class="negrita">TuGesto</span></h4>
                     <h5 class="h5">( 2023 )</h5>
                     <p class="p">Diseñé, desarrollé e implementé para la web pública utilizando Vue.js.
                         Además de características y funcionalidades complejas utilizando PHP y Laravel,
                         Trabajé con el equipo de diseño para traducir los requisitos del cliente.
+                        <br>
                         Las prácticas duraron 3 meses.
+                        <br><br>
                     </p>
                     <p class="p"><span class="negrita">Aptitudes:</span> JIRA · MariaDB · Trabajo en equipo · Trabajo en
                         remoto · Desarrollo front end · Desarrollo back end · Vue.js · Laravel · HTML · JavaScript · Git
-                        · Hojas de estilos en cascada (CSS) · Bases de datos · PHP</p>
+                        · (CSS) · PHP</p>
+                </div>
+                <div class="div experienciaLaboralTres">
+                    
                 </div>
             </div>
         </div>
@@ -112,28 +134,34 @@
         <div class="separacion"></div>
         <!-- AQUI UN BARRA DE SEPARACION-->
         <div class="inforMasSobreMi">
-            <h3 class="h3 titulos">Mas sobre mi</h3>
-            <p class="p">Vivo en <span class="negrita">Valencia/España</span>. Desde los 16 años me <span
-                    class="negrita">encanta programar</span> construyendo
-                y destruyendo webs por simple diversión. Soy un joven de 20 años, con un título de
-                grado superior en <span class="negrita">Desarrollo de Aplicaciones Web</span> que respalda
-                mi formación académica. Mi <span class="negrita">objetivo principal</span> es obtener experiencia
-                laboral en
-                este emocionante campo. Estoy entusiasmado por la oportunidad de aplicar mis <span
-                    class="negrita">habilidades</span> y
-                <span class="negrita">conocimientos</span> adquiridos en un entorno laboral real, <span
-                    class="negrita">contribuyendo</span> al éxito del
-                equipo y continuando mi crecimiento profesional en el campo del desarrollo web.
-            </p>
+            <h3 class="h3 titulos">Más sobre mi</h3>
+            <button class="botonTarjeta" onclick="mostrarInformacion()">
+                <h4 class="h4">👇 Desplégame 👇</h4>
+            </button>
+            <div id="tarjetaInformacion1" class="tarjetaInformacion">
+                <br>
+                <p class="p">Vivo en <span class="negrita">Valencia/España</span>. Desde los 16 años me <span
+                        class="negrita">encanta programar</span>, construyendo
+                    y destruyendo webs por simple diversión. Mi <span class="negrita">objetivo principal</span> es obtener experiencia
+                    laboral en
+                    este emocionante campo. Estoy entusiasmado por la oportunidad de aplicar mis <span
+                        class="negrita">habilidades</span> y
+                    <span class="negrita">conocimientos</span> adquiridos en un entorno laboral real, <span
+                        class="negrita">contribuyendo</span> al éxito del
+                    equipo y continuando mi crecimiento profesional en el campo del desarrollo web.
+                </p>
+            
             <br>
             <p class="p">Posibilidad de incorporación <span class="negrita">inmediata</span>, además de posibilidad de
                 <span class="negrita">desplazamiento</span> a
                 Palma de Mallorca sin problemas.
             </p>
             <br>
+            <p class="p">Trabajar tanto en <span class="negrita">Presencial</span>, de forma <span class="negrita">Remota</span> o <span class="negrita">Hibrida</span> no sería un problema.</p>
+            </div>
+            <br>
             <p class="p">No olvides que al <span class="negrita">final</span> de la página tienes mis redes de <span class="negrita">contacto</span> </p>
-        </div></div>
-       
+        </div>
         <!-- AQUI UN BARRA DE SEPARACION-->
         <div class="separacion"></div>
         <!-- AQUI UN BARRA DE SEPARACION-->

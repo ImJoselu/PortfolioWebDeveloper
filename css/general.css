@@ -64,6 +64,7 @@ body {
 .logo > img {
   width: 50px; /* Ancho de la imagen (ajusta según sea necesario) */
   margin: 20px;
+  padding: 5px;
 }
 
 .nombre {
@@ -115,6 +116,31 @@ footer {
  font-weight: bold;  
 }
 
+.scroll-button {
+  display: none;
+  position: fixed;
+  left: 20px;
+  bottom: 20px;
+  width: 40px;
+  height: 40px;
+  background-color: #5fabfc;
+  color: #fff;
+  font-size: 24px;
+  text-align: center;
+  line-height: 40px;
+  cursor: pointer;
+  border-radius: 50%;
+  transition: opacity 0.3s ease;
+}
+
+.scroll-button i {
+  vertical-align: middle;
+}
+
+#scrollToTop {
+  bottom: 70px;
+}
+
 /* Estilos específicos para pantallas grandes (992px en adelante) */
 @media only screen and (min-width: 992px) {
   body {
@@ -123,5 +149,10 @@ footer {
 
   .nombre {
     display: block;
+  }
+
+  .scroll-button{
+    width: 40px;
+    height: 40px;
   }
 }
