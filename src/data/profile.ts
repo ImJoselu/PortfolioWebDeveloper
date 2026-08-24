@@ -126,7 +126,7 @@ export const skills = {
   integrations: ['SOAP', 'REST', 'WSDL'],
   databases: ['MySQL', 'MariaDB'],
   tools: ['Git', 'JIRA', 'Visual Studio Code'],
-  ai: ['Claude', 'ChatGPT'],
+  ai: ['Claude', 'Claude Agents', 'ChatGPT', 'GitHub Copilot'],
 } as const;
 
 export const interestPoints = ['drivingLicense', 'availability', 'workMode'] as const;
