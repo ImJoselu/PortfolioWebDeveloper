@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://imjoselu.github.io/PortfolioWebDeveloper/sitemap-index.xml

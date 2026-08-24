@@ -1,0 +1,149 @@
+---
+import '../styles/global.css';
+import { withBase } from '../i18n/utils';
+import { links } from '../data/profile';
+import type { Lang } from '../i18n/utils';
+
+interface Props {
+  lang: Lang;
+  title: string;
+  description: string;
+  /** Root-relative path without base, e.g. "/" or "/en" */
+  path: '/' | '/en';
+  skipLinkLabel: string;
+}
+
+const { lang, title, description, path, skipLinkLabel } = Astro.props;
+
+const SITE_ORIGIN = 'https://imjoselu.github.io';
+const esUrl = `${SITE_ORIGIN}${withBase('/')}`;
+const enUrl = `${SITE_ORIGIN}${withBase('/en')}`;
+const canonical = path === '/' ? esUrl : enUrl;
+const ogImage = `${SITE_ORIGIN}${withBase('/og-image.png')}`;
+
+const personJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Person',
+  name: 'Jose Luis Tórtola Cervera',
+  jobTitle: lang === 'es' ? 'Desarrollador Full-Stack' : 'Full-Stack Developer',
+  url: esUrl,
+  image: `${SITE_ORIGIN}${withBase('/og-image.png')}`,
+  email: `mailto:${links.email}`,
+  sameAs: [links.linkedin, links.github],
+  worksFor: {
+    '@type': 'Organization',
+    name: 'Lãberit',
+  },
+  address: {
+    '@type': 'PostalAddress',
+    addressLocality: 'Puerto de Sagunto',
+    addressRegion: 'Valencia',
+    addressCountry: 'ES',
+  },
+  knowsLanguage: ['es', 'ca', 'en'],
+};
+
+const websiteJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'WebSite',
+  name: 'Jose Luis Tórtola Cervera — Portfolio',
+  url: esUrl,
+  inLanguage: lang,
+};
+
+// Set via the PUBLIC_GA_MEASUREMENT_ID build-time env var (see .env.example
+// and the "Deploy" section in README.md) — analytics stay off until it's set.
+const gaId = import.meta.env.PUBLIC_GA_MEASUREMENT_ID;
+---
+
+<!doctype html>
+<html lang={lang} data-scroll-root>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <meta name="author" content="Jose Luis Tórtola Cervera" />
+    <link rel="canonical" href={canonical} />
+    <link rel="alternate" hreflang="es" href={esUrl} />
+    <link rel="alternate" hreflang="en" href={enUrl} />
+    <link rel="alternate" hreflang="x-default" href={esUrl} />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:locale" content={lang === 'es' ? 'es_ES' : 'en_US'} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImage} />
+
+    <meta name="theme-color" content="#10151b" />
+    <link rel="icon" href={withBase('/favicon.svg')} type="image/svg+xml" />
+    <link rel="icon" href={withBase('/favicon-48.png')} sizes="48x48" type="image/png" />
+    <link rel="apple-touch-icon" href={withBase('/apple-touch-icon.png')} />
+
+    <script type="application/ld+json" is:inline set:html={JSON.stringify(personJsonLd)} />
+    <script type="application/ld+json" is:inline set:html={JSON.stringify(websiteJsonLd)} />
+
+    {
+      gaId && (
+        <>
+          <script async is:inline src={`https://www.googletagmanager.com/gtag/js?id=${gaId}`} />
+          <script is:inline define:vars={{ gaId }}>
+            window.dataLayer = window.dataLayer || [];
+            function gtag() {
+              dataLayer.push(arguments);
+            }
+            gtag('js', new Date());
+            gtag('config', gaId, { anonymize_ip: true });
+          </script>
+        </>
+      )
+    }
+
+    <script is:inline>
+      (function () {
+        try {
+          var stored = localStorage.getItem('theme');
+          if (stored === 'dark' || stored === 'light') {
+            document.documentElement.setAttribute('data-theme', stored);
+          }
+        } catch (e) {
+          /* localStorage unavailable — fall back to prefers-color-scheme */
+        }
+      })();
+    </script>
+  </head>
+  <body>
+    <a href="#main-content" class="skip-link">
+      {skipLinkLabel}
+    </a>
+    <slot />
+    <script>
+      // Elements start fully visible (see global.css). Only once we know we
+      // can reveal them again do we opt them into the pre-reveal hidden state,
+      // so a slow/broken observer never leaves content permanently invisible.
+      const revealTargets = document.querySelectorAll<HTMLElement>('.reveal');
+      if ('IntersectionObserver' in window && revealTargets.length) {
+        const revealObserver = new IntersectionObserver(
+          (entries, obs) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) {
+                entry.target.classList.add('is-visible');
+                obs.unobserve(entry.target);
+              }
+            });
+          },
+          { threshold: 0.15 },
+        );
+        revealTargets.forEach((el) => {
+          el.classList.add('will-reveal');
+          revealObserver.observe(el);
+        });
+      }
+    </script>
+  </body>
+</html>

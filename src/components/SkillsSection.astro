@@ -1,0 +1,29 @@
+---
+import Section from './Section.astro';
+import { skills } from '../data/profile';
+import type { Dictionary } from '../i18n/types';
+
+interface Props {
+  dict: Dictionary;
+}
+
+const { dict } = Astro.props;
+const categories = Object.entries(skills) as [keyof typeof skills, readonly string[]][];
+---
+
+<Section id="skills" kicker={dict.skills.kicker} title={dict.skills.title}>
+  <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+    {
+      categories.map(([key, techs]) => (
+        <div class="reveal rounded-lg border border-border bg-bg-elevated p-5">
+          <h3 class="font-mono text-xs uppercase tracking-[0.15em] text-accent">{dict.skills.categories[key]}</h3>
+          <ul class="mt-3 flex flex-wrap gap-2 text-sm text-text-muted">
+            {techs.map((tech) => (
+              <li class="rounded border border-border px-2.5 py-1 font-mono text-xs">{tech}</li>
+            ))}
+          </ul>
+        </div>
+      ))
+    }
+  </div>
+</Section>

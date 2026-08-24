@@ -1,0 +1,39 @@
+---
+import Icon from './Icon.astro';
+import { links } from '../data/profile';
+import type { Dictionary } from '../i18n/types';
+
+interface Props {
+  dict: Dictionary;
+}
+
+const { dict } = Astro.props;
+---
+
+<section id="built-with" data-section-root="built-with" class="scroll-mt-24 border-t border-border py-12">
+  <div class="mx-auto max-w-6xl px-4 sm:px-6">
+    <p class="font-mono text-xs uppercase tracking-[0.15em] text-text-muted">{dict.builtWith.kicker}</p>
+    <h2 class="mt-2 text-lg font-semibold text-text">{dict.builtWith.title}</h2>
+    <p class="mt-2 max-w-xl text-sm text-text-muted">{dict.builtWith.intro}</p>
+
+    <ul class="mt-5 flex flex-wrap gap-2">
+      {
+        dict.builtWith.items.map((item) => (
+          <li class="rounded border border-border px-3 py-1.5 text-xs text-text-muted">
+            <span class="font-mono text-text">{item.name}</span> — {item.description}
+          </li>
+        ))
+      }
+    </ul>
+
+    <a
+      href={links.repo}
+      target="_blank"
+      rel="noopener noreferrer"
+      class="mt-5 inline-flex items-center gap-1.5 text-sm font-medium text-accent hover:underline"
+    >
+      <Icon name="github" class="h-4 w-4" />
+      {dict.builtWith.repoLabel}
+    </a>
+  </div>
+</section>

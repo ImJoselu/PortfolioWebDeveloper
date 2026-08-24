@@ -1,0 +1,302 @@
+---
+import Icon from './Icon.astro';
+import { withBase, otherLangPath } from '../i18n/utils';
+import { links } from '../data/profile';
+import type { Lang } from '../i18n/utils';
+import type { Dictionary } from '../i18n/types';
+
+interface Props {
+  lang: Lang;
+  dict: Dictionary;
+}
+
+const { lang, dict } = Astro.props;
+
+const navItems = [
+  { id: 'about', label: dict.nav.about },
+  { id: 'experience', label: dict.nav.experience },
+  { id: 'projects', label: dict.nav.projects },
+  { id: 'skills', label: dict.nav.skills },
+  { id: 'how-i-work', label: dict.nav.howIWork },
+  { id: 'education', label: dict.nav.education },
+  { id: 'contact', label: dict.nav.contact },
+];
+---
+
+<div id="command-overlay" class="fixed inset-0 z-50 hidden bg-black/50 backdrop-blur-sm" hidden></div>
+
+<div
+  id="command-dialog"
+  role="dialog"
+  aria-modal="true"
+  aria-label={dict.commandPalette.placeholder}
+  class="fixed left-1/2 top-24 z-50 hidden w-[min(90vw,540px)] -translate-x-1/2 overflow-hidden rounded-lg border border-border bg-bg-elevated shadow-2xl"
+  hidden
+>
+  <div class="flex items-center gap-2 border-b border-border px-4 py-3">
+    <Icon name="search" class="h-4 w-4 shrink-0 text-text-muted" />
+    <input
+      id="command-input"
+      type="text"
+      class="w-full bg-transparent text-sm text-text placeholder:text-text-muted focus:outline-none"
+      placeholder={dict.commandPalette.placeholder}
+      autocomplete="off"
+      spellcheck="false"
+      role="combobox"
+      aria-expanded="true"
+      aria-controls="command-list"
+    />
+    <button type="button" id="command-close" class="shrink-0 text-xs text-text-muted hover:text-accent">
+      {dict.commandPalette.close}
+    </button>
+  </div>
+
+  <ul id="command-list" role="listbox" class="max-h-[60vh] overflow-y-auto p-2">
+    <li data-command-group class="px-2 py-1.5 font-mono text-[0.65rem] uppercase tracking-widest text-text-muted">
+      {dict.commandPalette.groupNav}
+    </li>
+    {
+      navItems.map((item) => (
+        <li role="option" data-command data-type="nav" data-target={`#${item.id}`} class="command-item" tabindex="-1">
+          {item.label}
+        </li>
+      ))
+    }
+    <li data-command-group class="mt-2 px-2 py-1.5 font-mono text-[0.65rem] uppercase tracking-widest text-text-muted">
+      {dict.commandPalette.groupActions}
+    </li>
+    <li role="option" data-command data-action="copy-email" data-email={links.email} data-label-copied={dict.commandPalette.actions.emailCopied} class="command-item" tabindex="-1">
+      {dict.commandPalette.actions.copyEmail}
+    </li>
+    <li role="option" data-command data-action="download-cv" data-href={withBase(links.cvPath)} class="command-item" tabindex="-1">
+      {dict.commandPalette.actions.downloadCv}
+    </li>
+    <li role="option" data-command data-action="toggle-theme" class="command-item" tabindex="-1">
+      {dict.commandPalette.actions.toggleThemeDark}
+    </li>
+    <li role="option" data-command data-action="switch-language" data-href={withBase(otherLangPath(lang))} class="command-item" tabindex="-1">
+      {dict.commandPalette.actions.switchLanguage}
+    </li>
+    <li role="option" data-command data-action="open-linkedin" data-href={links.linkedin} class="command-item" tabindex="-1">
+      {dict.commandPalette.actions.openLinkedin}
+    </li>
+    <li role="option" data-command data-action="open-github" data-href={links.github} class="command-item" tabindex="-1">
+      {dict.commandPalette.actions.openGithub}
+    </li>
+  </ul>
+
+  <p id="command-empty" class="hidden px-4 py-6 text-center text-sm text-text-muted">{dict.commandPalette.empty}</p>
+</div>
+
+<button
+  type="button"
+  id="command-trigger-mobile"
+  class="fixed bottom-5 right-5 z-30 flex h-12 w-12 items-center justify-center rounded-full border border-border bg-bg-elevated text-accent shadow-lg sm:hidden"
+  aria-label={dict.commandPalette.openHint}
+>
+  <Icon name="search" class="h-5 w-5" />
+</button>
+
+<style>
+  .command-item {
+    padding: 0.55rem 0.75rem;
+    border-radius: 0.375rem;
+    font-size: 0.875rem;
+    color: var(--color-text);
+    cursor: pointer;
+  }
+
+  .command-item:hover,
+  .command-item.is-active-option {
+    background-color: var(--color-bg-inset);
+    color: var(--color-accent);
+  }
+</style>
+
+<script>
+  const overlay = document.getElementById('command-overlay');
+  const dialog = document.getElementById('command-dialog');
+  const input = document.getElementById('command-input') as HTMLInputElement | null;
+  const emptyState = document.getElementById('command-empty');
+  const closeButton = document.getElementById('command-close');
+  const triggers = [document.getElementById('command-trigger'), document.getElementById('command-trigger-mobile')].filter(
+    Boolean,
+  ) as HTMLElement[];
+
+  let lastFocused: HTMLElement | null = null;
+  const backgroundLandmarks = ['site-header', 'main-content', 'site-footer']
+    .map((id) => document.getElementById(id))
+    .filter(Boolean) as HTMLElement[];
+
+  function items(): HTMLElement[] {
+    return Array.from(document.querySelectorAll<HTMLElement>('.command-item'));
+  }
+
+  function setActiveIndex(index: number) {
+    const visible = items().filter((item) => item.style.display !== 'none');
+    visible.forEach((item) => item.classList.remove('is-active-option'));
+    const target = visible[index];
+    if (target) {
+      target.classList.add('is-active-option');
+      target.scrollIntoView({ block: 'nearest' });
+      input?.setAttribute('aria-activedescendant', target.id || '');
+    }
+  }
+
+  function openPalette() {
+    lastFocused = document.activeElement as HTMLElement;
+    overlay?.classList.remove('hidden');
+    overlay?.removeAttribute('hidden');
+    dialog?.classList.remove('hidden');
+    dialog?.removeAttribute('hidden');
+    backgroundLandmarks.forEach((el) => el.setAttribute('inert', ''));
+    if (input) {
+      input.value = '';
+      filter('');
+      input.focus();
+    }
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closePalette() {
+    overlay?.classList.add('hidden');
+    overlay?.setAttribute('hidden', '');
+    dialog?.classList.add('hidden');
+    dialog?.setAttribute('hidden', '');
+    backgroundLandmarks.forEach((el) => el.removeAttribute('inert'));
+    document.body.style.overflow = '';
+    lastFocused?.focus();
+  }
+
+  function trapFocus(event: KeyboardEvent) {
+    if (event.key !== 'Tab' || !dialog) return;
+    const focusable = Array.from(dialog.querySelectorAll<HTMLElement>('input, button')).filter(
+      (el) => !el.hasAttribute('disabled'),
+    );
+    if (!focusable.length) return;
+    const first = focusable[0];
+    const last = focusable[focusable.length - 1];
+    if (event.shiftKey && document.activeElement === first) {
+      event.preventDefault();
+      last.focus();
+    } else if (!event.shiftKey && document.activeElement === last) {
+      event.preventDefault();
+      first.focus();
+    }
+  }
+
+  function filter(query: string) {
+    const q = query.trim().toLowerCase();
+    let anyVisible = false;
+
+    document.querySelectorAll<HTMLElement>('[data-command-group]').forEach((group) => {
+      let node = group.nextElementSibling as HTMLElement | null;
+      let groupHasVisible = false;
+      while (node && !node.hasAttribute('data-command-group')) {
+        const matches = node.textContent?.toLowerCase().includes(q);
+        node.style.display = matches ? '' : 'none';
+        if (matches) {
+          groupHasVisible = true;
+          anyVisible = true;
+        }
+        node = node.nextElementSibling as HTMLElement | null;
+      }
+      group.style.display = groupHasVisible ? '' : 'none';
+    });
+
+    emptyState?.classList.toggle('hidden', anyVisible);
+    setActiveIndex(0);
+  }
+
+  function activate(item: HTMLElement) {
+    const target = item.dataset.target;
+    if (target) {
+      const section = document.querySelector(target);
+      const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      section?.scrollIntoView({ behavior: reduceMotion ? 'auto' : 'smooth', block: 'start' });
+      history.pushState(null, '', target);
+      closePalette();
+      return;
+    }
+
+    const action = item.dataset.action;
+
+    if (action === 'copy-email' && item.dataset.email) {
+      navigator.clipboard?.writeText(item.dataset.email).then(() => {
+        const original = item.textContent;
+        item.textContent = item.dataset.labelCopied ?? original;
+        setTimeout(() => {
+          item.textContent = original;
+        }, 1600);
+      });
+      return;
+    }
+
+    if (action === 'toggle-theme') {
+      document.getElementById('theme-toggle')?.click();
+      closePalette();
+      return;
+    }
+
+    if (action === 'download-cv' && item.dataset.href) {
+      const link = document.createElement('a');
+      link.href = item.dataset.href;
+      link.setAttribute('download', '');
+      document.body.appendChild(link);
+      link.click();
+      link.remove();
+      closePalette();
+      return;
+    }
+
+    if (item.dataset.href) {
+      if (action === 'open-linkedin' || action === 'open-github') {
+        window.open(item.dataset.href, '_blank', 'noopener,noreferrer');
+      } else {
+        window.location.href = item.dataset.href;
+      }
+      closePalette();
+    }
+  }
+
+  items().forEach((item, index) => {
+    item.id = `command-item-${index}`;
+    item.addEventListener('click', () => activate(item));
+  });
+
+  input?.addEventListener('input', () => filter(input.value));
+
+  input?.addEventListener('keydown', (event) => {
+    const visible = items().filter((item) => item.style.display !== 'none');
+    const currentIndex = visible.findIndex((item) => item.classList.contains('is-active-option'));
+
+    if (event.key === 'ArrowDown') {
+      event.preventDefault();
+      setActiveIndex(Math.min(currentIndex + 1, visible.length - 1));
+    } else if (event.key === 'ArrowUp') {
+      event.preventDefault();
+      setActiveIndex(Math.max(currentIndex - 1, 0));
+    } else if (event.key === 'Enter') {
+      event.preventDefault();
+      const active = visible[currentIndex] ?? visible[0];
+      if (active) activate(active);
+    } else if (event.key === 'Escape') {
+      closePalette();
+    }
+  });
+
+  closeButton?.addEventListener('click', closePalette);
+  overlay?.addEventListener('click', closePalette);
+  triggers.forEach((trigger) => trigger.addEventListener('click', openPalette));
+  dialog?.addEventListener('keydown', trapFocus);
+
+  document.addEventListener('keydown', (event) => {
+    const isCommandK = (event.ctrlKey || event.metaKey) && event.key.toLowerCase() === 'k';
+    if (isCommandK) {
+      event.preventDefault();
+      const isOpen = dialog && !dialog.hasAttribute('hidden');
+      if (isOpen) closePalette();
+      else openPalette();
+    }
+  });
+</script>

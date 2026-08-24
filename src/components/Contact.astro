@@ -1,0 +1,46 @@
+---
+import Section from './Section.astro';
+import Icon from './Icon.astro';
+import { links, location } from '../data/profile';
+import type { Dictionary } from '../i18n/types';
+
+interface Props {
+  dict: Dictionary;
+}
+
+const { dict } = Astro.props;
+
+const contactLinks = [
+  { href: `mailto:${links.email}`, label: dict.contact.emailLabel, value: links.email, icon: 'mail' as const },
+  { href: links.linkedin, label: dict.contact.linkedinLabel, value: 'linkedin.com/in/jostorcer', icon: 'linkedin' as const, external: true },
+  { href: links.github, label: dict.contact.githubLabel, value: 'github.com/ImJoselu', icon: 'github' as const, external: true },
+];
+---
+
+<Section id="contact" kicker={dict.contact.kicker} title={dict.contact.title} intro={dict.contact.lead}>
+  <div class="grid gap-4 sm:grid-cols-3">
+    {
+      contactLinks.map((item) => (
+        <a
+          href={item.href}
+          target={item.external ? '_blank' : undefined}
+          rel={item.external ? 'noopener noreferrer' : undefined}
+          class="reveal group flex items-center gap-3 rounded-lg border border-border bg-bg-elevated p-5 transition-colors hover:border-accent"
+        >
+          <span class="flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-border text-accent transition-colors group-hover:border-accent">
+            <Icon name={item.icon} class="h-5 w-5" />
+          </span>
+          <span class="min-w-0">
+            <span class="block text-sm text-text-muted">{item.label}</span>
+            <span class="block truncate font-medium text-text">{item.value}</span>
+          </span>
+        </a>
+      ))
+    }
+  </div>
+
+  <p class="reveal mt-8 flex items-center gap-2 text-sm text-text-muted">
+    <Icon name="map-pin" class="h-4 w-4 text-accent" />
+    <span>{dict.contact.locationLabel}: {location}</span>
+  </p>
+</Section>

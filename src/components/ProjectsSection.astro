@@ -1,0 +1,18 @@
+---
+import Section from './Section.astro';
+import ProjectCard from './ProjectCard.astro';
+import { projects } from '../data/profile';
+import type { Dictionary } from '../i18n/types';
+
+interface Props {
+  dict: Dictionary;
+}
+
+const { dict } = Astro.props;
+---
+
+<Section id="projects" kicker={dict.projects.kicker} title={dict.projects.title} intro={dict.projects.intro}>
+  <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+    {projects.map((project) => <ProjectCard project={project} item={dict.projects.items[project.id]} dict={dict} />)}
+  </div>
+</Section>

@@ -1,0 +1,24 @@
+---
+import Section from './Section.astro';
+import type { Dictionary } from '../i18n/types';
+
+interface Props {
+  dict: Dictionary;
+}
+
+const { dict } = Astro.props;
+---
+
+<Section id="how-i-work" kicker={dict.howIWork.kicker} title={dict.howIWork.title}>
+  <ol class="grid gap-6 sm:grid-cols-2 lg:grid-cols-5">
+    {
+      dict.howIWork.steps.map((step, index) => (
+        <li class="reveal relative rounded-lg border border-border bg-bg-elevated p-5">
+          <span class="font-mono text-xs text-accent">{String(index + 1).padStart(2, '0')}</span>
+          <h3 class="mt-2 font-semibold text-text">{step.title}</h3>
+          <p class="mt-2 text-sm leading-relaxed text-text-muted">{step.description}</p>
+        </li>
+      ))
+    }
+  </ol>
+</Section>

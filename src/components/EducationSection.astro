@@ -1,0 +1,73 @@
+---
+import { Image } from 'astro:assets';
+import Section from './Section.astro';
+import Icon from './Icon.astro';
+import { education, certifications } from '../data/profile';
+import { formatPeriod, withBase } from '../i18n/utils';
+import type { Dictionary } from '../i18n/types';
+
+interface Props {
+  dict: Dictionary;
+}
+
+const { dict } = Astro.props;
+---
+
+<Section id="education" kicker={dict.education.kicker} title={dict.education.title}>
+  <div class="grid gap-10 lg:grid-cols-2">
+    <ul class="reveal space-y-5">
+      {
+        education.map((entry) => (
+          <li class="border-l-2 border-border pl-4">
+            <p class="font-medium text-text">{dict.education.items[entry.id].name}</p>
+            <p class="text-sm text-text-muted">
+              {entry.institution} — {entry.place}
+            </p>
+            <p class="font-mono text-xs text-text-muted">{formatPeriod(entry.period, '')}</p>
+          </li>
+        ))
+      }
+    </ul>
+
+    <div class="reveal">
+      <h3 class="font-mono text-xs uppercase tracking-[0.15em] text-text-muted">{dict.education.certificationsTitle}</h3>
+      <ul class="mt-4 space-y-4">
+        {
+          certifications.map((cert) => (
+            <li class="flex items-center gap-4 rounded-lg border border-border bg-bg-elevated p-4">
+              {cert.kind === 'image' ? (
+                <Image
+                  src={cert.image}
+                  alt={dict.education.certifications[cert.id].name}
+                  width={72}
+                  height={72}
+                  loading="lazy"
+                  class="h-16 w-16 shrink-0 rounded object-cover"
+                />
+              ) : (
+                <span class="flex h-16 w-16 shrink-0 items-center justify-center rounded bg-bg-inset text-accent">
+                  <Icon name="download" class="h-6 w-6" />
+                </span>
+              )}
+              <div class="min-w-0">
+                <p class="font-medium text-text">{dict.education.certifications[cert.id].name}</p>
+                <p class="font-mono text-xs text-text-muted">{cert.meta}</p>
+                {cert.kind === 'pdf' && (
+                  <a
+                    href={withBase(cert.pdfPath)}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="mt-1 inline-flex items-center gap-1 text-xs font-medium text-accent hover:underline"
+                  >
+                    {dict.education.viewPdf}
+                    <Icon name="external" class="h-3 w-3" />
+                  </a>
+                )}
+              </div>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </div>
+</Section>

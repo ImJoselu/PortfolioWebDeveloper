@@ -1,0 +1,61 @@
+---
+import Section from './Section.astro';
+import Icon from './Icon.astro';
+import { location, spokenLanguages } from '../data/profile';
+import type { Dictionary } from '../i18n/types';
+
+interface Props {
+  dict: Dictionary;
+}
+
+const { dict } = Astro.props;
+---
+
+<Section id="about" kicker={dict.about.kicker} title={dict.about.title}>
+  <div class="grid gap-10 lg:grid-cols-[1.4fr_1fr]">
+    <div class="reveal space-y-4 text-text-muted">
+      {dict.about.paragraphs.map((paragraph) => <p class="leading-relaxed">{paragraph}</p>)}
+    </div>
+
+    <div class="reveal rounded-lg border border-border bg-bg-elevated p-6">
+      <h3 class="font-mono text-xs uppercase tracking-[0.15em] text-text-muted">{dict.about.factsTitle}</h3>
+      <dl class="mt-4 space-y-4 text-sm">
+        <div class="flex items-start gap-3">
+          <Icon name="map-pin" class="mt-0.5 h-4 w-4 shrink-0 text-accent" />
+          <div>
+            <dt class="text-text-muted">{dict.about.facts.location}</dt>
+            <dd class="text-text">{location}</dd>
+          </div>
+        </div>
+        <div class="flex items-start gap-3">
+          <Icon name="globe" class="mt-0.5 h-4 w-4 shrink-0 text-accent" />
+          <div>
+            <dt class="text-text-muted">{dict.about.facts.languages}</dt>
+            <dd class="text-text">
+              {spokenLanguages.map((lang, i) => (
+                <span>
+                  {dict.languages[lang.code]} ({dict.languages[lang.level]})
+                  {i < spokenLanguages.length - 1 ? ', ' : ''}
+                </span>
+              ))}
+            </dd>
+          </div>
+        </div>
+        <div class="flex items-start gap-3">
+          <Icon name="search" class="mt-0.5 h-4 w-4 shrink-0 text-accent" />
+          <div>
+            <dt class="text-text-muted">{dict.about.facts.availability}</dt>
+            <dd class="text-text">{dict.about.availabilityValue}</dd>
+          </div>
+        </div>
+        <div class="flex items-start gap-3">
+          <Icon name="external" class="mt-0.5 h-4 w-4 shrink-0 text-accent" />
+          <div>
+            <dt class="text-text-muted">{dict.about.facts.workMode}</dt>
+            <dd class="text-text">{dict.about.workModeValue}</dd>
+          </div>
+        </div>
+      </dl>
+    </div>
+  </div>
+</Section>

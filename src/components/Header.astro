@@ -1,0 +1,251 @@
+---
+import Icon from './Icon.astro';
+import { withBase, otherLangPath } from '../i18n/utils';
+import { links } from '../data/profile';
+import type { Lang } from '../i18n/utils';
+import type { Dictionary } from '../i18n/types';
+
+interface Props {
+  lang: Lang;
+  dict: Dictionary;
+}
+
+const { lang, dict } = Astro.props;
+
+const navItems = [
+  { id: 'about', label: dict.nav.about },
+  { id: 'experience', label: dict.nav.experience },
+  { id: 'projects', label: dict.nav.projects },
+  { id: 'skills', label: dict.nav.skills },
+  { id: 'contact', label: dict.nav.contact },
+];
+---
+
+<header id="site-header" class="sticky top-0 z-40 border-b border-border bg-bg/90 backdrop-blur supports-[backdrop-filter]:bg-bg/75">
+  <div class="mx-auto flex max-w-6xl items-center justify-between gap-3 px-4 py-3 sm:px-6">
+    <a href="#" class="flex items-center gap-2 shrink-0" aria-label={lang === 'es' ? 'Ir al inicio' : 'Go to homepage'}>
+      <span class="flex h-8 w-8 items-center justify-center rounded-[8px] bg-accent text-accent-contrast">
+        <svg viewBox="0 0 64 64" class="h-5 w-5" aria-hidden="true">
+          <circle cx="20" cy="44" r="5.5" fill="currentColor" />
+          <circle cx="44" cy="20" r="5.5" fill="currentColor" />
+          <path
+            d="M20 44 L20 26 L44 26 L44 20"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="4.5"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          />
+        </svg>
+      </span>
+      <span class="hidden text-sm font-semibold tracking-tight sm:inline">Jose Luis Tórtola</span>
+    </a>
+
+    <nav aria-label={lang === 'es' ? 'Principal' : 'Primary'} class="hidden items-center gap-6 font-mono text-[0.8rem] lg:flex">
+      {
+        navItems.map((item) => (
+          <a href={`#${item.id}`} data-nav-link data-section={item.id} class="nav-link">
+            {item.label}
+          </a>
+        ))
+      }
+    </nav>
+
+    <div class="flex items-center gap-1.5 sm:gap-2">
+      <button
+        type="button"
+        id="command-trigger"
+        class="hidden items-center gap-2 rounded border border-border px-2.5 py-1.5 text-xs text-text-muted transition-colors hover:border-accent hover:text-accent sm:inline-flex"
+      >
+        <Icon name="search" class="h-4 w-4" />
+        <span>{dict.commandPalette.openHint}</span>
+        <kbd class="rounded border border-border px-1 py-0.5 font-mono text-[0.65rem]">Ctrl K</kbd>
+      </button>
+
+      <a
+        href={withBase(links.cvPath)}
+        class="hidden items-center gap-1.5 rounded border border-border px-3 py-1.5 text-sm transition-colors hover:border-accent hover:text-accent md:inline-flex"
+        download
+      >
+        <Icon name="download" class="h-4 w-4" />
+        {dict.nav.downloadCv}
+      </a>
+
+      <a
+        href={withBase(otherLangPath(lang))}
+        class="inline-flex items-center gap-1.5 rounded border border-border px-2.5 py-1.5 text-sm transition-colors hover:border-accent hover:text-accent"
+        aria-label={dict.languageSwitch.ariaLabel}
+        hreflang={lang === 'es' ? 'en' : 'es'}
+      >
+        <Icon name="globe" class="h-4 w-4" />
+        <span class="hidden sm:inline">{dict.languageSwitch.label}</span>
+      </a>
+
+      <button
+        type="button"
+        id="theme-toggle"
+        class="inline-flex h-9 w-9 items-center justify-center rounded border border-border transition-colors hover:border-accent hover:text-accent"
+        aria-label={dict.theme.toggleToDark}
+        data-label-dark={dict.theme.toggleToDark}
+        data-label-light={dict.theme.toggleToLight}
+      >
+        <Icon name="moon" class="theme-icon-dark h-4 w-4" />
+        <Icon name="sun" class="theme-icon-light hidden h-4 w-4" />
+      </button>
+
+      <button
+        type="button"
+        id="mobile-menu-toggle"
+        class="inline-flex h-9 w-9 items-center justify-center rounded border border-border lg:hidden"
+        aria-expanded="false"
+        aria-controls="mobile-menu"
+        aria-label={dict.nav.openMenu}
+        data-label-open={dict.nav.openMenu}
+        data-label-close={dict.nav.closeMenu}
+      >
+        <Icon name="menu" class="menu-icon-open h-5 w-5" />
+        <Icon name="close" class="menu-icon-close hidden h-5 w-5" />
+      </button>
+    </div>
+  </div>
+
+  <nav
+    id="mobile-menu"
+    aria-label={lang === 'es' ? 'Móvil' : 'Mobile'}
+    class="hidden border-t border-border px-4 py-3 font-mono text-sm lg:hidden"
+  >
+    <ul class="flex flex-col gap-3">
+      {
+        navItems.map((item) => (
+          <li>
+            <a href={`#${item.id}`} data-nav-link data-section={item.id} class="nav-link block py-1">
+              {item.label}
+            </a>
+          </li>
+        ))
+      }
+      <li>
+        <a href={withBase(links.cvPath)} download class="nav-link block py-1">
+          {dict.nav.downloadCv}
+        </a>
+      </li>
+    </ul>
+  </nav>
+</header>
+
+<style>
+  .nav-link {
+    color: var(--color-text-muted);
+    position: relative;
+    padding-bottom: 2px;
+    transition: color 150ms ease;
+  }
+
+  .nav-link:hover {
+    color: var(--color-text);
+  }
+
+  .nav-link.is-active {
+    color: var(--color-accent);
+  }
+
+  .nav-link.is-active::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: -4px;
+    height: 2px;
+    background-color: var(--color-accent);
+  }
+</style>
+
+<script>
+  const THEME_KEY = 'theme';
+  const root = document.documentElement;
+  const themeToggle = document.getElementById('theme-toggle');
+
+  function isDark(): boolean {
+    const attr = root.getAttribute('data-theme');
+    if (attr === 'dark') return true;
+    if (attr === 'light') return false;
+    return window.matchMedia('(prefers-color-scheme: dark)').matches;
+  }
+
+  function syncThemeIcon() {
+    const dark = isDark();
+    document.querySelectorAll<HTMLElement>('.theme-icon-dark').forEach((el) => el.classList.toggle('hidden', dark));
+    document.querySelectorAll<HTMLElement>('.theme-icon-light').forEach((el) => el.classList.toggle('hidden', !dark));
+    if (themeToggle) {
+      const label = dark ? themeToggle.dataset.labelLight : themeToggle.dataset.labelDark;
+      if (label) themeToggle.setAttribute('aria-label', label);
+    }
+  }
+
+  themeToggle?.addEventListener('click', () => {
+    const nextTheme = isDark() ? 'light' : 'dark';
+    root.setAttribute('data-theme', nextTheme);
+    try {
+      localStorage.setItem(THEME_KEY, nextTheme);
+    } catch {
+      /* ignore */
+    }
+    syncThemeIcon();
+  });
+
+  syncThemeIcon();
+
+  const menuToggle = document.getElementById('mobile-menu-toggle');
+  const mobileMenu = document.getElementById('mobile-menu');
+
+  menuToggle?.addEventListener('click', () => {
+    const isOpen = mobileMenu?.classList.contains('hidden') === false;
+    mobileMenu?.classList.toggle('hidden');
+    menuToggle.setAttribute('aria-expanded', String(!isOpen));
+    document.querySelector('.menu-icon-open')?.classList.toggle('hidden');
+    document.querySelector('.menu-icon-close')?.classList.toggle('hidden');
+    const label = !isOpen ? menuToggle.dataset.labelClose : menuToggle.dataset.labelOpen;
+    if (label) menuToggle.setAttribute('aria-label', label);
+  });
+
+  mobileMenu?.querySelectorAll('a').forEach((link) => {
+    link.addEventListener('click', () => {
+      mobileMenu.classList.add('hidden');
+      menuToggle?.setAttribute('aria-expanded', 'false');
+      document.querySelector('.menu-icon-open')?.classList.remove('hidden');
+      document.querySelector('.menu-icon-close')?.classList.add('hidden');
+      if (menuToggle instanceof HTMLElement && menuToggle.dataset.labelOpen) {
+        menuToggle.setAttribute('aria-label', menuToggle.dataset.labelOpen);
+      }
+    });
+  });
+
+  const sections = Array.from(document.querySelectorAll<HTMLElement>('[data-section-root]'));
+  const navLinks = Array.from(document.querySelectorAll<HTMLAnchorElement>('[data-nav-link]'));
+
+  if (sections.length && navLinks.length && 'IntersectionObserver' in window) {
+    const setActive = (id: string) => {
+      navLinks.forEach((link) => {
+        link.classList.toggle('is-active', link.dataset.section === id);
+        if (link.dataset.section === id) {
+          link.setAttribute('aria-current', 'true');
+        } else {
+          link.removeAttribute('aria-current');
+        }
+      });
+    };
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const visible = entries.filter((entry) => entry.isIntersecting).sort((a, b) => b.intersectionRatio - a.intersectionRatio);
+        if (visible[0]) {
+          const id = (visible[0].target as HTMLElement).dataset.sectionRoot;
+          if (id) setActive(id);
+        }
+      },
+      { rootMargin: '-40% 0px -50% 0px', threshold: [0, 0.25, 0.5, 0.75, 1] },
+    );
+
+    sections.forEach((section) => observer.observe(section));
+  }
+</script>

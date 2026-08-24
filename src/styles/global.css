@@ -1,0 +1,124 @@
+@import 'tailwindcss';
+@import '@fontsource-variable/inter';
+@import '@fontsource/jetbrains-mono/400.css';
+@import '@fontsource/jetbrains-mono/500.css';
+
+@theme {
+  --font-sans: 'InterVariable', ui-sans-serif, system-ui, sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, 'SFMono-Regular', Menlo, monospace;
+
+  /* Light theme (default) */
+  --color-bg: #f7f5f0;
+  --color-bg-elevated: #ffffff;
+  --color-bg-inset: #efece4;
+  --color-text: #1b1f23;
+  --color-text-muted: #55606b;
+  --color-border: #e2ded2;
+  --color-accent: #0f766e;
+  --color-accent-strong: #0d9488;
+  --color-accent-contrast: #ffffff;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme='light']) {
+    --color-bg: #10151b;
+    --color-bg-elevated: #161c24;
+    --color-bg-inset: #1b222b;
+    --color-text: #e8eaed;
+    --color-text-muted: #97a2ae;
+    --color-border: #262e38;
+    --color-accent: #2dd4bf;
+    --color-accent-strong: #5eead4;
+    --color-accent-contrast: #062a26;
+  }
+}
+
+:root[data-theme='dark'] {
+  --color-bg: #10151b;
+  --color-bg-elevated: #161c24;
+  --color-bg-inset: #1b222b;
+  --color-text: #e8eaed;
+  --color-text-muted: #97a2ae;
+  --color-border: #262e38;
+  --color-accent: #2dd4bf;
+  --color-accent-strong: #5eead4;
+  --color-accent-contrast: #062a26;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  background-color: var(--color-bg);
+  color: var(--color-text);
+  font-family: var(--font-sans);
+  transition: background-color 200ms ease, color 200ms ease;
+}
+
+::selection {
+  background-color: var(--color-accent);
+  color: var(--color-accent-contrast);
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+.skip-link {
+  position: absolute;
+  left: 1rem;
+  top: -3rem;
+  z-index: 100;
+  padding: 0.6rem 1rem;
+  background-color: var(--color-accent);
+  color: var(--color-accent-contrast);
+  font-weight: 600;
+  border-radius: 4px;
+  transition: top 150ms ease;
+}
+
+.skip-link:focus-visible {
+  top: 1rem;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+/*
+ * Visible by default so content never depends on JavaScript running.
+ * JS opts elements into the pre-reveal hidden state only once it has
+ * confirmed it can also reveal them again (see the reveal script below).
+ */
+.reveal.will-reveal {
+  opacity: 0;
+  transform: translateY(12px);
+  transition: opacity 500ms ease, transform 500ms ease;
+}
+
+.reveal.will-reveal.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal.will-reveal {
+    opacity: 1;
+    transform: none;
+  }
+}

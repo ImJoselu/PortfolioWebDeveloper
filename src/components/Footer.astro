@@ -1,0 +1,46 @@
+---
+import Icon from './Icon.astro';
+import { links } from '../data/profile';
+import type { Dictionary } from '../i18n/types';
+
+interface Props {
+  dict: Dictionary;
+}
+
+const { dict } = Astro.props;
+const year = new Date().getFullYear();
+---
+
+<footer id="site-footer" class="border-t border-border">
+  <div class="mx-auto flex max-w-6xl flex-col gap-4 px-4 py-8 sm:flex-row sm:items-center sm:justify-between sm:px-6">
+    <p class="text-sm text-text-muted">© {year} Jose Luis Tórtola Cervera. {dict.footer.rightsSuffix}</p>
+
+    <div class="flex items-center gap-4">
+      <a href={`mailto:${links.email}`} class="text-text-muted transition-colors hover:text-accent" aria-label={dict.contact.emailLabel}>
+        <Icon name="mail" class="h-5 w-5" />
+      </a>
+      <a
+        href={links.github}
+        target="_blank"
+        rel="noopener noreferrer"
+        class="text-text-muted transition-colors hover:text-accent"
+        aria-label={dict.contact.githubLabel}
+      >
+        <Icon name="github" class="h-5 w-5" />
+      </a>
+      <a
+        href={links.linkedin}
+        target="_blank"
+        rel="noopener noreferrer"
+        class="text-text-muted transition-colors hover:text-accent"
+        aria-label={dict.contact.linkedinLabel}
+      >
+        <Icon name="linkedin" class="h-5 w-5" />
+      </a>
+      <a href="#" class="ml-2 inline-flex items-center gap-1.5 text-sm text-text-muted transition-colors hover:text-accent">
+        <Icon name="arrow-up" class="h-4 w-4" />
+        {dict.footer.backToTop}
+      </a>
+    </div>
+  </div>
+</footer>
