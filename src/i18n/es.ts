@@ -56,7 +56,6 @@ export const es: Dictionary = {
     paragraphs: [
       'Soy desarrollador full-stack en Puerto de Sagunto (Valencia). Empecé con un Grado Medio en Sistemas Microinformáticos y Redes y seguí con el Grado Superior en Desarrollo de Aplicaciones Web — desde entonces no he dejado de construir software.',
       'Desde 2023 trabajo en Lãberit manteniendo aplicaciones Java/Spring en producción, desarrollando integraciones SOAP/REST y construyendo interfaces con Angular y TypeScript. Antes, en mis prácticas en TuGesto, desarrollé la web pública con Vue.js, PHP y Laravel.',
-      'Me interesa especialmente el punto donde backend y frontend se encuentran: definir un contrato claro entre sistemas y construir encima una interfaz que un usuario entienda a la primera.',
     ],
     factsTitle: 'Datos rápidos',
     facts: {

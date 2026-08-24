@@ -56,7 +56,6 @@ export const en: Dictionary = {
     paragraphs: [
       "I'm a full-stack developer based in Puerto de Sagunto (Valencia, Spain). I started with a vocational degree in Microcomputer Systems and Networks and followed it with a higher vocational degree in Web Application Development — I haven't stopped building software since.",
       'Since 2023 I work at Lãberit maintaining Java/Spring applications in production, developing SOAP/REST integrations, and building interfaces with Angular and TypeScript. Before that, during my internship at TuGesto, I built their public website with Vue.js, PHP and Laravel.',
-      "I'm particularly interested in where backend and frontend meet: defining a clear contract between systems and building an interface on top of it that a user understands right away.",
     ],
     factsTitle: 'Quick facts',
     facts: {
