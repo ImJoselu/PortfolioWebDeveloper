@@ -4,7 +4,7 @@ Portfolio profesional construido con [Astro](https://astro.build), TypeScript y 
 
 ## Desarrollo local
 
-Requiere [Node.js](https://nodejs.org) 20+.
+Requiere [Node.js](https://nodejs.org) 22.12+ (versión mínima exigida por Astro 7).
 
 ```bash
 npm install
