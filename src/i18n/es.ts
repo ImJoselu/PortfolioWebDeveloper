@@ -106,11 +106,6 @@ export const es: Dictionary = {
     roleLabel: 'Rol',
     roleValue: 'Desarrollo individual, de principio a fin.',
     items: {
-      calculadora: {
-        name: 'Calculadora',
-        description:
-          'Calculadora interactiva construida con Vue.js para practicar gestión de estado y composición de componentes reactivos.',
-      },
       'concesionario-vue': {
         name: 'Concesionario — SPA con Vue.js',
         description:

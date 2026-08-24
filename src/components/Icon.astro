@@ -14,7 +14,9 @@ interface Props {
     | 'search'
     | 'arrow-up'
     | 'arrow-right'
-    | 'globe';
+    | 'globe'
+    | 'cloud'
+    | 'layers';
   class?: string;
 }
 
@@ -124,6 +126,22 @@ const { name, class: className = 'h-5 w-5' } = Astro.props;
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" class={className} aria-hidden="true">
       <circle cx="12" cy="12" r="8.5" />
       <path d="M3.5 12h17M12 3.5c2.2 2.3 3.4 5.3 3.4 8.5s-1.2 6.2-3.4 8.5c-2.2-2.3-3.4-5.3-3.4-8.5S9.8 5.8 12 3.5Z" />
+    </svg>
+  )
+}
+{
+  name === 'cloud' && (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" class={className} aria-hidden="true">
+      <path d="M6.5 19a4.5 4.5 0 0 1-1-8.9 5 5 0 0 1 9.6-2 4 4 0 0 1 4.4 5.9A3.5 3.5 0 0 1 18 19H6.5Z" />
+    </svg>
+  )
+}
+{
+  name === 'layers' && (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" class={className} aria-hidden="true">
+      <path d="M12 3 3 8l9 5 9-5-9-5Z" />
+      <path d="M3 12l9 5 9-5" />
+      <path d="M3 16l9 5 9-5" />
     </svg>
   )
 }

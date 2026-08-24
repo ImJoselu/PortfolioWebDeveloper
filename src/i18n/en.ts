@@ -105,10 +105,6 @@ export const en: Dictionary = {
     roleLabel: 'Role',
     roleValue: 'Solo development, end to end.',
     items: {
-      calculadora: {
-        name: 'Calculator',
-        description: 'Interactive calculator built with Vue.js to practice state management and reactive component composition.',
-      },
       'concesionario-vue': {
         name: 'Car dealership — Vue.js SPA',
         description:

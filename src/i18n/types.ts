@@ -86,7 +86,6 @@ export interface Dictionary {
     roleLabel: string;
     roleValue: string;
     items: {
-      calculadora: ProjectCopy;
       'concesionario-vue': ProjectCopy;
       'concesionario-php': ProjectCopy;
     };

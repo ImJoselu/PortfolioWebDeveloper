@@ -1,7 +1,6 @@
 import type { ImageMetadata } from 'astro';
 import joseLuisPhoto from '../assets/photos/jltortola.jpg';
 import javaCertPhoto from '../assets/photos/certificado-java.png';
-import calculadoraImg from '../assets/projects/calculadora.jpg';
 import concesionarioVueImg from '../assets/projects/concesionario-vue.jpg';
 import concesionarioPhpImg from '../assets/projects/concesionario-php.jpg';
 
@@ -79,7 +78,7 @@ export const education: EducationEntry[] = [
 export type CertificationEntry = {
   id: 'java-cert' | 'azure-foundry' | 'pl-600';
   meta: string;
-} & ({ kind: 'image'; image: ImageMetadata } | { kind: 'pdf'; pdfPath: string });
+} & ({ kind: 'image'; image: ImageMetadata } | { kind: 'pdf'; pdfPath: string; icon: 'cloud' | 'layers' });
 
 export const certifications: CertificationEntry[] = [
   { id: 'java-cert', meta: '2023', kind: 'image', image: javaCertPhoto },
@@ -88,29 +87,25 @@ export const certifications: CertificationEntry[] = [
     meta: '2026 · 6 h',
     kind: 'pdf',
     pdfPath: '/certifications/Azure-Foundry-Innovacion-IA-Generativa.pdf',
+    icon: 'cloud',
   },
   {
     id: 'pl-600',
     meta: '2024 · 8 h',
     kind: 'pdf',
     pdfPath: '/certifications/PL-600-Power-Platform-Solution-Architect.pdf',
+    icon: 'layers',
   },
 ];
 
 export type Project = {
-  id: 'calculadora' | 'concesionario-vue' | 'concesionario-php';
+  id: 'concesionario-vue' | 'concesionario-php';
   repoUrl: string;
   image: ImageMetadata;
   stack: string[];
 };
 
 export const projects: Project[] = [
-  {
-    id: 'calculadora',
-    repoUrl: 'https://github.com/ImJoselu/calculadoraVue',
-    image: calculadoraImg,
-    stack: ['Vue.js', 'JavaScript', 'CSS'],
-  },
   {
     id: 'concesionario-vue',
     repoUrl: 'https://github.com/ImJoselu/carsVue',
@@ -126,7 +121,7 @@ export const projects: Project[] = [
 ];
 
 export const skills = {
-  frontend: ['Vue.js', 'Angular', 'TypeScript', 'JavaScript', 'HTML', 'CSS'],
+  frontend: ['Vue.js', 'Angular', 'TypeScript', 'JavaScript', 'HTML', 'CSS', 'Astro'],
   backend: ['Java', 'Spring / Spring Boot', 'PHP', 'Laravel'],
   integrations: ['SOAP', 'REST', 'WSDL'],
   databases: ['MySQL', 'MariaDB'],
