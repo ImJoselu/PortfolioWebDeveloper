@@ -30,6 +30,14 @@ export const es: Dictionary = {
     toggleToDark: 'Activar modo oscuro',
     toggleToLight: 'Activar modo claro',
   },
+  game: {
+    ariaPlay: 'Jugar una partida de snake',
+    ariaShowPhoto: 'Volver a la foto',
+    pressToStart: 'Pulsa para jugar',
+    score: 'Puntuación',
+    gameOver: 'Fin de la partida',
+    restart: 'Pulsa para reiniciar',
+  },
   hero: {
     kicker: 'Jose Luis Tórtola Cervera · Desarrollador Full-Stack · Valencia, España',
     heading: 'Conecto sistemas empresariales con interfaces modernas.',

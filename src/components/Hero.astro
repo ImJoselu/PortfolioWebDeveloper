@@ -78,28 +78,274 @@ const heroStack = [...skills.backend.slice(0, 2), ...skills.frontend.slice(0, 3)
 
     <div class="mx-auto w-full max-w-[280px] shrink-0 lg:mx-0 lg:max-w-[320px]">
       <div class="relative rounded-2xl border border-border bg-bg-elevated p-2">
-        <Image
-          src={photo}
-          alt={dict.hero.photoAlt}
-          width={320}
-          height={320}
-          class="aspect-square w-full rounded-xl object-cover"
-        />
-        <span class="absolute -bottom-3 -right-3 flex h-11 w-11 items-center justify-center rounded-lg bg-accent text-accent-contrast shadow-sm">
-          <svg viewBox="0 0 64 64" class="h-6 w-6" aria-hidden="true">
-            <circle cx="20" cy="44" r="5.5" fill="currentColor" />
-            <circle cx="44" cy="20" r="5.5" fill="currentColor" />
-            <path
-              d="M20 44 L20 26 L44 26 L44 20"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="4.5"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-            />
-          </svg>
-        </span>
+        <div class="relative aspect-square w-full overflow-hidden rounded-xl bg-bg-inset">
+          <Image
+            id="hero-photo"
+            src={photo}
+            alt={dict.hero.photoAlt}
+            width={320}
+            height={320}
+            class="h-full w-full object-cover"
+          />
+          <canvas id="snake-canvas" width="320" height="320" class="absolute inset-0 hidden h-full w-full touch-none"
+          ></canvas>
+          <div
+            id="snake-overlay"
+            class="absolute inset-0 hidden flex-col items-center justify-center gap-1 bg-bg-inset/85 px-4 text-center"
+            aria-live="polite"
+            data-msg-press={dict.game.pressToStart}
+            data-msg-gameover={dict.game.gameOver}
+            data-label-score={dict.game.score}
+            data-label-restart={dict.game.restart}
+          >
+            <p id="snake-message" class="text-sm font-medium text-text">{dict.game.pressToStart}</p>
+            <p id="snake-score" class="font-mono text-xs text-text-muted"></p>
+          </div>
+        </div>
+
+        <button
+          type="button"
+          id="game-toggle"
+          class="absolute -bottom-3 -right-3 flex h-11 w-11 items-center justify-center rounded-lg bg-accent text-accent-contrast shadow-sm transition-transform hover:scale-105"
+          aria-label={dict.game.ariaPlay}
+          data-label-play={dict.game.ariaPlay}
+          data-label-photo={dict.game.ariaShowPhoto}
+        >
+          <span id="game-icon-play"><Icon name="gamepad" class="h-5 w-5" /></span>
+          <span id="game-icon-photo" class="hidden"><Icon name="close" class="h-5 w-5" /></span>
+        </button>
       </div>
     </div>
   </div>
 </section>
+
+<script>
+  type Point = { x: number; y: number };
+
+  const canvas = document.getElementById('snake-canvas') as HTMLCanvasElement | null;
+  const overlay = document.getElementById('snake-overlay');
+  const messageEl = document.getElementById('snake-message');
+  const scoreEl = document.getElementById('snake-score');
+  const photoEl = document.getElementById('hero-photo');
+  const toggleBtn = document.getElementById('game-toggle');
+  const iconPlay = document.getElementById('game-icon-play');
+  const iconPhoto = document.getElementById('game-icon-photo');
+
+  if (canvas && overlay && messageEl && scoreEl && photoEl && toggleBtn && iconPlay && iconPhoto) {
+    const ctx = canvas.getContext('2d');
+    const GRID = 16;
+    const CELL = canvas.width / GRID;
+    const TICK_MS = 140;
+
+    const dict = {
+      pressToStart: overlay.dataset.msgPress ?? 'Press to play',
+      score: overlay.dataset.labelScore ?? 'Score',
+      gameOver: overlay.dataset.msgGameover ?? 'Game over',
+      restart: overlay.dataset.labelRestart ?? 'Press to restart',
+    };
+
+    let snake: Point[] = [];
+    let direction: Point = { x: 1, y: 0 };
+    let nextDirection: Point = { x: 1, y: 0 };
+    let food: Point = { x: 0, y: 0 };
+    let score = 0;
+    let state: 'idle' | 'playing' | 'over' = 'idle';
+    let loopId: ReturnType<typeof setInterval> | null = null;
+    let gameActive = false;
+
+    function colors() {
+      const styles = getComputedStyle(document.documentElement);
+      return {
+        accent: styles.getPropertyValue('--color-accent').trim() || '#2dd4bf',
+        text: styles.getPropertyValue('--color-text').trim() || '#1b1f23',
+        bg: styles.getPropertyValue('--color-bg-inset').trim() || '#efece4',
+      };
+    }
+
+    function randomFood(): Point {
+      let candidate: Point;
+      do {
+        candidate = { x: Math.floor(Math.random() * GRID), y: Math.floor(Math.random() * GRID) };
+      } while (snake.some((s) => s.x === candidate.x && s.y === candidate.y));
+      return candidate;
+    }
+
+    function resetGame() {
+      const mid = Math.floor(GRID / 2);
+      snake = [
+        { x: mid - 1, y: mid },
+        { x: mid - 2, y: mid },
+        { x: mid - 3, y: mid },
+      ];
+      direction = { x: 1, y: 0 };
+      nextDirection = { x: 1, y: 0 };
+      score = 0;
+      food = randomFood();
+      state = 'playing';
+      scoreEl!.textContent = '';
+      overlay!.classList.add('hidden');
+      overlay!.classList.remove('flex');
+      draw();
+      startLoop();
+    }
+
+    function endGame() {
+      state = 'over';
+      stopLoop();
+      messageEl!.textContent = dict.gameOver;
+      scoreEl!.textContent = `${dict.score}: ${score} — ${dict.restart}`;
+      overlay!.classList.remove('hidden');
+      overlay!.classList.add('flex');
+    }
+
+    function tick() {
+      direction = nextDirection;
+      const head = snake[0];
+      const newHead: Point = { x: head.x + direction.x, y: head.y + direction.y };
+
+      if (newHead.x < 0 || newHead.x >= GRID || newHead.y < 0 || newHead.y >= GRID) {
+        endGame();
+        return;
+      }
+      if (snake.some((s) => s.x === newHead.x && s.y === newHead.y)) {
+        endGame();
+        return;
+      }
+
+      snake.unshift(newHead);
+
+      if (newHead.x === food.x && newHead.y === food.y) {
+        score += 1;
+        food = randomFood();
+      } else {
+        snake.pop();
+      }
+
+      draw();
+    }
+
+    function draw() {
+      if (!ctx) return;
+      const { accent, text, bg } = colors();
+      ctx.clearRect(0, 0, canvas!.width, canvas!.height);
+      ctx.fillStyle = bg;
+      ctx.fillRect(0, 0, canvas!.width, canvas!.height);
+
+      ctx.fillStyle = text;
+      ctx.beginPath();
+      ctx.arc(food.x * CELL + CELL / 2, food.y * CELL + CELL / 2, CELL * 0.28, 0, Math.PI * 2);
+      ctx.fill();
+
+      ctx.fillStyle = accent;
+      snake.forEach((segment, index) => {
+        const pad = index === 0 ? 1 : 2;
+        ctx!.fillRect(segment.x * CELL + pad, segment.y * CELL + pad, CELL - pad * 2, CELL - pad * 2);
+      });
+    }
+
+    function startLoop() {
+      stopLoop();
+      loopId = setInterval(tick, TICK_MS);
+    }
+
+    function stopLoop() {
+      if (loopId !== null) {
+        clearInterval(loopId);
+        loopId = null;
+      }
+    }
+
+    function setDirection(dx: number, dy: number) {
+      // Ignore reversals into the snake's own body.
+      if (direction.x === -dx && direction.y === -dy) return;
+      nextDirection = { x: dx, y: dy };
+    }
+
+    function handleKeydown(event: KeyboardEvent) {
+      if (!gameActive) return;
+      const key = event.key.toLowerCase();
+      const arrows: Record<string, [number, number]> = {
+        arrowup: [0, -1],
+        arrowdown: [0, 1],
+        arrowleft: [-1, 0],
+        arrowright: [1, 0],
+        w: [0, -1],
+        s: [0, 1],
+        a: [-1, 0],
+        d: [1, 0],
+      };
+      if (arrows[key]) {
+        event.preventDefault();
+        if (state === 'playing') setDirection(...arrows[key]);
+        else resetGame();
+      } else if (key === 'enter' || key === ' ') {
+        event.preventDefault();
+        if (state !== 'playing') resetGame();
+      }
+    }
+
+    let touchStart: Point | null = null;
+    function handleTouchStart(event: TouchEvent) {
+      const t = event.touches[0];
+      touchStart = { x: t.clientX, y: t.clientY };
+    }
+    function handleTouchEnd(event: TouchEvent) {
+      if (state !== 'playing') {
+        resetGame();
+        return;
+      }
+      if (!touchStart) return;
+      const t = event.changedTouches[0];
+      const dx = t.clientX - touchStart.x;
+      const dy = t.clientY - touchStart.y;
+      if (Math.abs(dx) < 12 && Math.abs(dy) < 12) return;
+      if (Math.abs(dx) > Math.abs(dy)) setDirection(dx > 0 ? 1 : -1, 0);
+      else setDirection(0, dy > 0 ? 1 : -1);
+      touchStart = null;
+    }
+
+    function showGame() {
+      gameActive = true;
+      photoEl!.classList.add('hidden');
+      canvas!.classList.remove('hidden');
+      overlay!.classList.remove('hidden');
+      overlay!.classList.add('flex');
+      iconPlay!.classList.add('hidden');
+      iconPhoto!.classList.remove('hidden');
+      toggleBtn!.setAttribute('aria-label', toggleBtn!.dataset.labelPhoto ?? '');
+      state = 'idle';
+      snake = [];
+      messageEl!.textContent = dict.pressToStart;
+      scoreEl!.textContent = '';
+      if (ctx) {
+        ctx.fillStyle = colors().bg;
+        ctx.fillRect(0, 0, canvas!.width, canvas!.height);
+      }
+    }
+
+    function showPhoto() {
+      gameActive = false;
+      stopLoop();
+      photoEl!.classList.remove('hidden');
+      canvas!.classList.add('hidden');
+      overlay!.classList.add('hidden');
+      overlay!.classList.remove('flex');
+      iconPlay!.classList.remove('hidden');
+      iconPhoto!.classList.add('hidden');
+      toggleBtn!.setAttribute('aria-label', toggleBtn!.dataset.labelPlay ?? '');
+    }
+
+    toggleBtn.addEventListener('click', () => {
+      if (gameActive) showPhoto();
+      else showGame();
+    });
+
+    overlay.addEventListener('click', () => {
+      if (gameActive && state !== 'playing') resetGame();
+    });
+
+    document.addEventListener('keydown', handleKeydown);
+    canvas.addEventListener('touchstart', handleTouchStart, { passive: true });
+    canvas.addEventListener('touchend', handleTouchEnd, { passive: true });
+  }
+</script>

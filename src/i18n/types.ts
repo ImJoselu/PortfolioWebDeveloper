@@ -42,6 +42,14 @@ export interface Dictionary {
   };
   languageSwitch: { label: string; ariaLabel: string };
   theme: { toggleToDark: string; toggleToLight: string };
+  game: {
+    ariaPlay: string;
+    ariaShowPhoto: string;
+    pressToStart: string;
+    score: string;
+    gameOver: string;
+    restart: string;
+  };
   hero: {
     kicker: string;
     heading: string;

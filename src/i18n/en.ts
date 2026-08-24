@@ -30,6 +30,14 @@ export const en: Dictionary = {
     toggleToDark: 'Switch to dark mode',
     toggleToLight: 'Switch to light mode',
   },
+  game: {
+    ariaPlay: 'Play a game of snake',
+    ariaShowPhoto: 'Back to photo',
+    pressToStart: 'Press to play',
+    score: 'Score',
+    gameOver: 'Game over',
+    restart: 'Press to restart',
+  },
   hero: {
     kicker: 'Jose Luis Tórtola Cervera · Full-Stack Developer · Valencia, Spain',
     heading: 'I connect enterprise systems with modern interfaces.',

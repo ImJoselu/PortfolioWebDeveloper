@@ -16,7 +16,8 @@ interface Props {
     | 'arrow-right'
     | 'globe'
     | 'cloud'
-    | 'layers';
+    | 'layers'
+    | 'gamepad';
   class?: string;
 }
 
@@ -142,6 +143,16 @@ const { name, class: className = 'h-5 w-5' } = Astro.props;
       <path d="M12 3 3 8l9 5 9-5-9-5Z" />
       <path d="M3 12l9 5 9-5" />
       <path d="M3 16l9 5 9-5" />
+    </svg>
+  )
+}
+{
+  name === 'gamepad' && (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" class={className} aria-hidden="true">
+      <rect x="2.5" y="7.5" width="19" height="11" rx="5.5" />
+      <path d="M7 10.5v3M5.5 12h3" />
+      <circle cx="15" cy="10.7" r="0.9" fill="currentColor" stroke="none" />
+      <circle cx="17.5" cy="13.2" r="0.9" fill="currentColor" stroke="none" />
     </svg>
   )
 }
