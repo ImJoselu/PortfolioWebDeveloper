@@ -124,7 +124,7 @@ export const skills = {
   frontend: ['Vue.js', 'Angular', 'TypeScript', 'JavaScript', 'HTML', 'CSS', 'Astro'],
   backend: ['Java', 'Spring / Spring Boot', 'PHP', 'Laravel'],
   integrations: ['SOAP', 'REST', 'WSDL'],
-  databases: ['MySQL', 'MariaDB'],
+  databases: ['MySQL', 'MariaDB', 'PostgreSQL', 'Oracle'],
   tools: ['Git', 'JIRA', 'Visual Studio Code'],
   ai: ['Claude', 'Claude Agents', 'ChatGPT', 'GitHub Copilot'],
 } as const;
