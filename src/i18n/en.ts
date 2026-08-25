@@ -121,6 +121,11 @@ export const en: Dictionary = {
         name: 'Car dealership — PHP monolith',
         description: 'The same vehicle catalog rebuilt as a monolithic PHP and MySQL application, to compare the approach against an SPA.',
       },
+      valnex: {
+        name: 'VALNEX — personal finance dashboard',
+        description:
+          'A multi-user finance dashboard that centralizes bank accounts, cash, funds, stocks and crypto in one view. Java/Spring Boot backend as the single source of truth for calculations, with embedded SQLite and a React + TypeScript frontend.',
+      },
     },
   },
   skills: {

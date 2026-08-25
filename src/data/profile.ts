@@ -3,6 +3,7 @@ import joseLuisPhoto from '../assets/photos/jltortola.jpg';
 import javaCertPhoto from '../assets/photos/certificado-java.png';
 import concesionarioVueImg from '../assets/projects/concesionario-vue.jpg';
 import concesionarioPhpImg from '../assets/projects/concesionario-php.jpg';
+import valnexJavaImg from '../assets/projects/valnex-java.png';
 
 /**
  * Language-neutral facts only (dates, names, links, tech, images).
@@ -99,7 +100,7 @@ export const certifications: CertificationEntry[] = [
 ];
 
 export type Project = {
-  id: 'concesionario-vue' | 'concesionario-php';
+  id: 'concesionario-vue' | 'concesionario-php' | 'valnex';
   repoUrl: string;
   image: ImageMetadata;
   stack: string[];
@@ -117,6 +118,12 @@ export const projects: Project[] = [
     repoUrl: 'https://github.com/ImJoselu/carsMonolity',
     image: concesionarioPhpImg,
     stack: ['PHP', 'MySQL', 'HTML', 'CSS'],
+  },
+  {
+    id: 'valnex',
+    repoUrl: 'https://github.com/ImJoselu/VALNEX',
+    image: valnexJavaImg,
+    stack: ['Java', 'Spring Boot', 'SQLite', 'React', 'TypeScript'],
   },
 ];
 

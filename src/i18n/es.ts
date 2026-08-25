@@ -123,6 +123,11 @@ export const es: Dictionary = {
         description:
           'El mismo catálogo de vehículos resuelto como aplicación monolítica en PHP y MySQL, para comparar el enfoque frente a una SPA.',
       },
+      valnex: {
+        name: 'VALNEX — panel financiero personal',
+        description:
+          'Panel financiero multiusuario que centraliza cuentas, efectivo, fondos, acciones y cripto en una sola vista. Backend en Java/Spring Boot como única fuente de verdad para los cálculos, con SQLite embebido y frontend en React con TypeScript.',
+      },
     },
   },
   skills: {

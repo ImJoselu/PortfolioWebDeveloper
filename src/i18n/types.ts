@@ -96,6 +96,7 @@ export interface Dictionary {
     items: {
       'concesionario-vue': ProjectCopy;
       'concesionario-php': ProjectCopy;
+      valnex: ProjectCopy;
     };
   };
   skills: {
