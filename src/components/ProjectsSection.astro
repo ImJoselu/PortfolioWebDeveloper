@@ -1,6 +1,7 @@
 ---
 import Section from './Section.astro';
 import ProjectCard from './ProjectCard.astro';
+import Icon from './Icon.astro';
 import { projects } from '../data/profile';
 import type { Dictionary } from '../i18n/types';
 
@@ -9,10 +10,151 @@ interface Props {
 }
 
 const { dict } = Astro.props;
+
+// Most recently added project first.
+const orderedProjects = [...projects].reverse();
 ---
 
 <Section id="projects" kicker={dict.projects.kicker} title={dict.projects.title} intro={dict.projects.intro}>
-  <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-    {projects.map((project) => <ProjectCard project={project} item={dict.projects.items[project.id]} dict={dict} />)}
+  <div data-project-carousel>
+    <div class="relative">
+      <div
+        data-carousel-track
+        class="flex snap-x snap-mandatory gap-6 overflow-x-auto scroll-smooth pb-2 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+      >
+        {
+          orderedProjects.map((project) => (
+            <div
+              data-carousel-item
+              class="w-full shrink-0 snap-start sm:w-[calc((100%-1.5rem)/2)] lg:w-[calc((100%-3rem)/3)]"
+            >
+              <ProjectCard project={project} item={dict.projects.items[project.id]} dict={dict} />
+            </div>
+          ))
+        }
+      </div>
+
+      {
+        orderedProjects.length > 1 && (
+          <>
+            <button
+              type="button"
+              data-carousel-prev
+              aria-label={dict.projects.prevAria}
+              class="carousel-arrow absolute left-0 top-[38%] hidden -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full border border-border bg-bg-elevated p-2 text-text shadow-sm transition-colors hover:border-accent hover:text-accent sm:flex"
+            >
+              <Icon name="arrow-right" class="h-4 w-4 rotate-180" />
+            </button>
+            <button
+              type="button"
+              data-carousel-next
+              aria-label={dict.projects.nextAria}
+              class="carousel-arrow absolute right-0 top-[38%] hidden translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full border border-border bg-bg-elevated p-2 text-text shadow-sm transition-colors hover:border-accent hover:text-accent sm:flex"
+            >
+              <Icon name="arrow-right" class="h-4 w-4" />
+            </button>
+          </>
+        )
+      }
+    </div>
+
+    {
+      orderedProjects.length > 1 && (
+        <div class="mt-6 flex items-center justify-center gap-2" role="tablist" aria-label={dict.projects.dotsAria}>
+          {orderedProjects.map((project, index) => (
+            <button
+              type="button"
+              data-carousel-dot
+              data-index={index}
+              role="tab"
+              aria-selected={index === 0 ? 'true' : 'false'}
+              aria-label={dict.projects.items[project.id].name}
+              class="carousel-dot"
+            />
+          ))}
+        </div>
+      )
+    }
   </div>
 </Section>
+
+<style>
+  .carousel-arrow:disabled {
+    pointer-events: none;
+    opacity: 0.35;
+  }
+
+  .carousel-dot {
+    height: 0.5rem;
+    width: 0.5rem;
+    border-radius: 9999px;
+    background-color: var(--color-border);
+    transition:
+      width 150ms ease,
+      background-color 150ms ease;
+  }
+
+  .carousel-dot.is-active {
+    width: 1.5rem;
+    background-color: var(--color-accent);
+  }
+</style>
+
+<script>
+  function initProjectCarousel(root: HTMLElement) {
+    const track = root.querySelector<HTMLElement>('[data-carousel-track]');
+    if (!track) return;
+
+    const items = Array.from(track.querySelectorAll<HTMLElement>('[data-carousel-item]'));
+    if (!items.length) return;
+
+    const prevBtn = root.querySelector<HTMLButtonElement>('[data-carousel-prev]');
+    const nextBtn = root.querySelector<HTMLButtonElement>('[data-carousel-next]');
+    const dots = Array.from(root.querySelectorAll<HTMLButtonElement>('[data-carousel-dot]'));
+
+    function closestIndex(): number {
+      let closest = 0;
+      let closestDiff = Infinity;
+      items.forEach((item, i) => {
+        const diff = Math.abs(item.offsetLeft - track!.scrollLeft);
+        if (diff < closestDiff) {
+          closestDiff = diff;
+          closest = i;
+        }
+      });
+      return closest;
+    }
+
+    function sync() {
+      const active = closestIndex();
+      dots.forEach((dot, i) => {
+        dot.classList.toggle('is-active', i === active);
+        dot.setAttribute('aria-selected', String(i === active));
+      });
+
+      const maxScroll = track!.scrollWidth - track!.clientWidth;
+      if (prevBtn) prevBtn.disabled = track!.scrollLeft <= 2;
+      if (nextBtn) nextBtn.disabled = track!.scrollLeft >= maxScroll - 2;
+    }
+
+    function goTo(index: number) {
+      const clamped = Math.max(0, Math.min(index, items.length - 1));
+      track!.scrollTo({ left: items[clamped].offsetLeft, behavior: 'smooth' });
+    }
+
+    prevBtn?.addEventListener('click', () => goTo(closestIndex() - 1));
+    nextBtn?.addEventListener('click', () => goTo(closestIndex() + 1));
+    dots.forEach((dot, i) => dot.addEventListener('click', () => goTo(i)));
+
+    let raf = 0;
+    track.addEventListener('scroll', () => {
+      cancelAnimationFrame(raf);
+      raf = requestAnimationFrame(sync);
+    });
+    window.addEventListener('resize', sync);
+
+    sync();
+  }
+
+  document.querySelectorAll<HTMLElement>('[data-project-carousel]').forEach((root) => initProjectCarousel(root));
+</script>

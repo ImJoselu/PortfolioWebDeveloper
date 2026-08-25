@@ -112,6 +112,9 @@ export const es: Dictionary = {
     stackLabel: 'Stack',
     roleLabel: 'Rol',
     roleValue: 'Desarrollo individual, de principio a fin.',
+    prevAria: 'Proyecto anterior',
+    nextAria: 'Siguiente proyecto',
+    dotsAria: 'Selecciona un proyecto',
     items: {
       'concesionario-vue': {
         name: 'Concesionario — SPA con Vue.js',

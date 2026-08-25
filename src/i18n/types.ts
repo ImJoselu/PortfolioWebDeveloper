@@ -93,6 +93,9 @@ export interface Dictionary {
     stackLabel: string;
     roleLabel: string;
     roleValue: string;
+    prevAria: string;
+    nextAria: string;
+    dotsAria: string;
     items: {
       'concesionario-vue': ProjectCopy;
       'concesionario-php': ProjectCopy;
