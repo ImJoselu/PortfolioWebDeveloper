@@ -132,7 +132,7 @@ export const skills = {
   backend: ['Java', 'Spring / Spring Boot', 'PHP', 'Laravel'],
   integrations: ['SOAP', 'REST', 'WSDL'],
   databases: ['MySQL', 'MariaDB', 'PostgreSQL', 'Oracle'],
-  tools: ['Git', 'JIRA', 'Visual Studio Code'],
+  tools: ['Git', 'JIRA', 'Jenkins', 'Postman', 'Docker'],
   ai: ['Claude', 'Claude Agents', 'ChatGPT', 'GitHub Copilot'],
 } as const;
 
