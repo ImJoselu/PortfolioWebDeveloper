@@ -3,13 +3,15 @@ import Section from './Section.astro';
 import ProjectCard from './ProjectCard.astro';
 import Icon from './Icon.astro';
 import { projects } from '../data/profile';
+import type { Lang } from '../i18n/utils';
 import type { Dictionary } from '../i18n/types';
 
 interface Props {
+  lang: Lang;
   dict: Dictionary;
 }
 
-const { dict } = Astro.props;
+const { lang, dict } = Astro.props;
 
 // Most recently added project first.
 const orderedProjects = [...projects].reverse();
@@ -28,7 +30,7 @@ const orderedProjects = [...projects].reverse();
               data-carousel-item
               class="w-full shrink-0 snap-start sm:w-[calc((100%-1.5rem)/2)] lg:w-[calc((100%-3rem)/3)]"
             >
-              <ProjectCard project={project} item={dict.projects.items[project.id]} dict={dict} />
+              <ProjectCard lang={lang} project={project} item={dict.projects.items[project.id]} dict={dict} />
             </div>
           ))
         }

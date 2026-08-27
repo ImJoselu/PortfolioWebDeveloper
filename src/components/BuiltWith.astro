@@ -19,9 +19,7 @@ const { dict } = Astro.props;
     <ul class="mt-5 flex flex-wrap gap-2">
       {
         dict.builtWith.items.map((item) => (
-          <li class="rounded border border-border px-3 py-1.5 text-xs text-text-muted">
-            <span class="font-mono text-text">{item.name}</span> — {item.description}
-          </li>
+          <li class="rounded border border-border px-3 py-1.5 font-mono text-xs text-text">{item}</li>
         ))
       }
     </ul>

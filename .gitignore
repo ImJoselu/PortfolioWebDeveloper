@@ -12,3 +12,7 @@ dist/
 # Editor/OS
 .DS_Store
 Thumbs.db
+
+# Personal notes
+HowTo.md
+PROMPT.md

@@ -17,6 +17,25 @@ export interface ProjectCopy {
   description: string;
 }
 
+/** One screenshot of the guided tour on a project's guide page. */
+export interface ProjectTourShot {
+  /** Matches a key of the project's `guide.shots` in src/data/profile.ts. */
+  id: string;
+  title: string;
+  description: string;
+}
+
+export interface ProjectGuideCopy {
+  tagline: string;
+  metaDescription: string;
+  intro: string[];
+  tourTitle: string;
+  shots: ProjectTourShot[];
+  highlightsTitle: string;
+  highlights: string[];
+  stackTitle: string;
+}
+
 export interface HowIWorkStep {
   title: string;
   description: string;
@@ -96,11 +115,21 @@ export interface Dictionary {
     prevAria: string;
     nextAria: string;
     dotsAria: string;
+    viewGuide: string;
+    guideBadge: string;
     items: {
       'concesionario-vue': ProjectCopy;
       'concesionario-php': ProjectCopy;
       valnex: ProjectCopy;
+      norda: ProjectCopy;
+      'sport-padel-sagunt': ProjectCopy;
     };
+  };
+  projectGuide: {
+    backToProjects: string;
+    kicker: string;
+    repoLabel: string;
+    guides: { valnex: ProjectGuideCopy; norda: ProjectGuideCopy };
   };
   skills: {
     kicker: string;
@@ -137,7 +166,7 @@ export interface Dictionary {
     title: string;
     intro: string;
     repoLabel: string;
-    items: { name: string; description: string }[];
+    items: string[];
   };
   footer: { backToTop: string; rightsSuffix: string };
   commandPalette: {

@@ -1,0 +1,33 @@
+---
+import type { GetStaticPaths } from 'astro';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import ProjectGuide from '../../components/ProjectGuide.astro';
+import Footer from '../../components/Footer.astro';
+import { projects, type Project } from '../../data/profile';
+import { getDictionary, projectGuidePath } from '../../i18n/utils';
+
+export const getStaticPaths: GetStaticPaths = () =>
+  projects
+    .filter((project) => project.guide)
+    .map((project) => ({ params: { slug: project.guide!.slug }, props: { project } }));
+
+const lang = 'es' as const;
+const dict = getDictionary(lang);
+// `getStaticPaths` props aren't inferred into `Astro.props` — annotate them.
+const { project } = Astro.props as { project: Project };
+const guideMeta = project.guide!;
+const item = dict.projects.items[project.id];
+const guide = dict.projectGuide.guides[guideMeta.slug];
+---
+
+<BaseLayout
+  lang={lang}
+  title={`${item.name} — Jose Luis Tórtola Cervera`}
+  description={guide.metaDescription}
+  path={projectGuidePath(lang, guideMeta.slug)}
+  altPath={projectGuidePath('en', guideMeta.slug)}
+  skipLinkLabel={dict.skipLink}
+>
+  <ProjectGuide lang={lang} dict={dict} project={project} item={item} guide={guide} />
+  <Footer dict={dict} />
+</BaseLayout>

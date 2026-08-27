@@ -28,6 +28,16 @@ export function otherLangPath(lang: Lang): string {
   return lang === 'es' ? '/en' : '/';
 }
 
+/** Root-relative path (no base) of the home page for a locale. */
+export function homePath(lang: Lang): '/' | '/en' {
+  return lang === 'es' ? '/' : '/en';
+}
+
+/** Root-relative path (no base) of a project guide page. */
+export function projectGuidePath(lang: Lang, slug: string): string {
+  return lang === 'es' ? `/proyectos/${slug}` : `/en/projects/${slug}`;
+}
+
 export function formatPeriod(
   period: { start: string; end: string | null },
   presentLabel: string,

@@ -59,7 +59,7 @@ export const en: Dictionary = {
     ],
     factsTitle: 'Quick facts',
     facts: {
-      location: 'Location',
+      location: 'Current location',
       languages: 'Languages',
       availability: 'Availability',
       workMode: 'Work mode',
@@ -106,8 +106,10 @@ export const en: Dictionary = {
   projects: {
     kicker: 'Projects',
     title: 'Personal projects',
-    intro: 'Personal projects, outside client work, built to practice frontend architecture and compare approaches (SPA vs. monolith).',
+    intro: 'Personal projects — things I build to practise, all outside company work.',
     viewRepo: 'View repository',
+    viewGuide: 'See project screenshots and more information',
+    guideBadge: 'Has a guide',
     stackLabel: 'Stack',
     roleLabel: 'Role',
     roleValue: 'Solo development, end to end.',
@@ -127,7 +129,145 @@ export const en: Dictionary = {
       valnex: {
         name: 'VALNEX — personal finance dashboard',
         description:
-          'A multi-user finance dashboard that centralizes bank accounts, cash, funds, stocks and crypto in one view. Java/Spring Boot backend as the single source of truth for calculations, with embedded SQLite and a React + TypeScript frontend.',
+          'A production-style multi-user finance application that centralizes bank accounts, cash, funds, stocks and crypto in one view. Java/Spring Boot backend as the single source of truth for calculations, with embedded SQLite and a React + TypeScript frontend.',
+      },
+      norda: {
+        name: 'NØRDA — specialty coffee platform',
+        description:
+          'A production-style coffee shop application that centralizes the catalog, orders, payments and back-office management on a single platform. Full-stack architecture with a Java/Spring Boot backend and a React frontend as the base for order and user management. Real-payments DEMO with the Stripe SDK.',
+      },
+      'sport-padel-sagunt': {
+        name: 'Sport Padel Sagunt — club website redesign',
+        description:
+          'A full redesign of a padel club website in Puerto de Sagunto, built together with a teammate: court booking, payments and real-time notices on Next.js with the App Router, Drizzle ORM and PostgreSQL.',
+      },
+    },
+  },
+  projectGuide: {
+    backToProjects: 'Back to projects',
+    kicker: 'Project guide',
+    repoLabel: 'View repository on GitHub',
+    guides: {
+      valnex: {
+        tagline: 'All your wealth. One single view.',
+        metaDescription:
+          'Visual guide to VALNEX: a multi-user finance dashboard with a Java/Spring Boot backend and a React frontend. A tour through the dashboard, net worth, investments, automations and betting.',
+        intro: [
+          'VALNEX is a production-style finance application: you configure your data once (balances, investments, contribution rules) and the app takes care of generating recurring movements, accruing interest on savings accounts, updating the market price of investments and rebuilding your net-worth history through periodic snapshots.',
+          'The Java/Spring Boot backend is the single source of truth: every financial calculation happens once on the server and the frontend only renders what already arrived computed. That keeps two easily-confused concepts apart — the capital you put in, and the return the investment generated.',
+        ],
+        tourTitle: 'A tour of the app',
+        shots: [
+          {
+            id: 'dashboard',
+            title: 'Dashboard',
+            description:
+              'The entry point after signing in: total net worth, change since the last snapshot and its evolution over time. A privacy button hides every figure at once — handy when showing the app to someone.',
+          },
+          {
+            id: 'patrimonio',
+            title: 'Net worth',
+            description:
+              'Distribution of your money by category (bank, funds, savings account, high risk, betting). Bank, cash and savings accounts are created right here, and money can be added to an existing investment without leaving the screen.',
+          },
+          {
+            id: 'inversiones',
+            title: 'Investments',
+            description:
+              'Each position shows current value, invested capital and return, always recomputed from the real transaction history. Assets are identified either by ticker (stocks, with automatic pricing) or by ISIN (UCITS funds, manual pricing).',
+          },
+          {
+            id: 'automatizaciones',
+            title: 'Automations',
+            description:
+              'Recurring rules (daily, weekly, fortnightly, monthly, yearly) that contribute to an account or an investment when due, including external income such as a salary. Every run — or every skip for insufficient balance — is written to a readable log.',
+          },
+          {
+            id: 'apuestas',
+            title: 'Betting',
+            description:
+              'An optional section, disabled by default on any new account. Once enabled, it shows net result, ROI and volume staked per bookmaker.',
+          },
+          {
+            id: 'mobile',
+            title: 'On mobile',
+            description: 'The same interface adapted to a small screen, with no features cut.',
+          },
+        ],
+        highlightsTitle: 'Technical decisions',
+        highlights: [
+          'Backend as the single source of truth: net worth, returns, interest and betting results are computed on the server, never on the client.',
+          'Genuine multi-tenancy with isolation verified by integration tests: no one can reach another person’s data through the API.',
+          'Embedded SQLite — no database server to install or administer; the whole application runs from a single file.',
+          'A welcome wizard on first sign-in: a handful of questions leave the account with real data instead of an empty dashboard.',
+          'An admin panel listing every account in the installation, plus the global configuration of the automatic processes.',
+          'JSON backup export/import, light and dark mode, and permanent self-service account deletion behind a double confirmation.',
+        ],
+        stackTitle: 'Stack',
+      },
+      norda: {
+        tagline: 'Discover the coffee behind every origin.',
+        metaDescription:
+          'Visual guide to NØRDA: a full-stack specialty coffee platform with a Java/Spring Boot backend, a React frontend and Stripe SDK payments. A tour through the catalog, origins map, checkout and admin panel.',
+        intro: [
+          'NØRDA is a production-style coffee shop application: a catalog with full traceability, an interactive origins map, a recommendation engine of its own, ecommerce with real checkout and inventory, subscriptions, reviews, an editorial blog and a complete admin panel.',
+          'The Java/Spring Boot backend is the single source of truth for price, stock, role and payment, with a ports-and-adapters architecture for external integrations — the Stripe SDK is wired in as a real-payments demo without coupling the domain to a specific provider.',
+        ],
+        tourTitle: 'A tour of the app',
+        shots: [
+          {
+            id: 'home',
+            title: 'Home',
+            description:
+              'The way into the platform: brand story, featured coffees and shortcuts to the catalog, the origins map and the recommender.',
+          },
+          {
+            id: 'catalog',
+            title: 'Catalog',
+            description:
+              'Filtering by country, region, process, roast and brewing method. Price and availability always come from the backend, never computed on the client.',
+          },
+          {
+            id: 'product',
+            title: 'Product detail',
+            description:
+              'Full lot traceability — producer, farm, harvest — with grind and format variants, and reviews only buyers of that coffee can leave.',
+          },
+          {
+            id: 'map',
+            title: 'Origins map',
+            description:
+              'Browsing coffee origin on an interactive map, worldwide and per country, with no third-party API keys involved.',
+          },
+          {
+            id: 'finder',
+            title: 'Coffee Finder',
+            description:
+              'Five questions and up to three explained recommendations ("we suggest X because…"), resolved by a deterministic in-house rules engine rather than a black box.',
+          },
+          {
+            id: 'journal',
+            title: 'Journal',
+            description:
+              'An editorial blog with articles on brewing, origin and production, with dynamic SEO and per-page JSON-LD.',
+          },
+          {
+            id: 'admin',
+            title: 'Admin panel',
+            description:
+              'Real metrics, product management with automatic variant generation, orders driven by a state machine, inventory, customers, reviews, coupons and origins.',
+          },
+        ],
+        highlightsTitle: 'Technical decisions',
+        highlights: [
+          'Checkout with atomic inventory reservation, coupons, shipping and tax calculation — all validated on the backend.',
+          'Payments through the Stripe SDK behind a ports-and-adapters architecture, so the domain never depends on the provider.',
+          'PostgreSQL with Flyway migrations applied at startup: there is no manual database step.',
+          'JWT authentication with a refresh cookie; there is deliberately no public endpoint for creating administrators.',
+          'Real tests on both layers: JUnit 5, Mockito and Testcontainers on the backend; Vitest and React Testing Library on the frontend; Playwright for E2E and accessibility with axe-core.',
+          'Every architectural decision documented as an ADR, including its known limits.',
+        ],
+        stackTitle: 'Stack',
       },
     },
   },
@@ -191,20 +331,14 @@ export const en: Dictionary = {
     emailLabel: 'Email',
     linkedinLabel: 'LinkedIn',
     githubLabel: 'GitHub',
-    locationLabel: 'Location',
+    locationLabel: 'Current location',
   },
   builtWith: {
     kicker: 'About this site',
     title: 'Built with',
     intro: 'This portfolio is a project of its own: no templates, source code open on GitHub.',
     repoLabel: 'View the code on GitHub',
-    items: [
-      { name: 'Astro', description: 'Static site generator' },
-      { name: 'TypeScript', description: 'Static typing' },
-      { name: 'Tailwind CSS', description: 'Styling' },
-      { name: 'GitHub Actions', description: 'Continuous integration & deployment' },
-      { name: 'GitHub Pages', description: 'Hosting' },
-    ],
+    items: ['Astro', 'TypeScript', 'Tailwind CSS', 'GitHub Actions', 'GitHub Pages'],
   },
   footer: {
     backToTop: 'Back to top',

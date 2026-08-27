@@ -8,17 +8,22 @@ interface Props {
   lang: Lang;
   title: string;
   description: string;
-  /** Root-relative path without base, e.g. "/" or "/en" */
-  path: '/' | '/en';
+  /** Root-relative path without base, e.g. "/", "/en" or "/proyectos/valnex" */
+  path: string;
+  /** Root-relative path of this same page in the other language. Defaults to that language's home. */
+  altPath?: string;
   skipLinkLabel: string;
 }
 
-const { lang, title, description, path, skipLinkLabel } = Astro.props;
+const { lang, title, description, path, altPath, skipLinkLabel } = Astro.props;
 
 const SITE_ORIGIN = 'https://imjoselu.github.io';
-const esUrl = `${SITE_ORIGIN}${withBase('/')}`;
-const enUrl = `${SITE_ORIGIN}${withBase('/en')}`;
-const canonical = path === '/' ? esUrl : enUrl;
+const homeEsUrl = `${SITE_ORIGIN}${withBase('/')}`;
+const canonical = `${SITE_ORIGIN}${withBase(path)}`;
+const otherUrl = `${SITE_ORIGIN}${withBase(altPath ?? (lang === 'es' ? '/en' : '/'))}`;
+// hreflang alternates always name this page's own pair, not the site's home pair.
+const esUrl = lang === 'es' ? canonical : otherUrl;
+const enUrl = lang === 'es' ? otherUrl : canonical;
 const ogImage = `${SITE_ORIGIN}${withBase('/og-image.png')}`;
 
 const personJsonLd = {
@@ -26,8 +31,8 @@ const personJsonLd = {
   '@type': 'Person',
   name: 'Jose Luis Tórtola Cervera',
   jobTitle: lang === 'es' ? 'Desarrollador Full-Stack' : 'Full-Stack Developer',
-  url: esUrl,
-  image: `${SITE_ORIGIN}${withBase('/og-image.png')}`,
+  url: homeEsUrl,
+  image: ogImage,
   email: `mailto:${links.email}`,
   sameAs: [links.linkedin, links.github],
   worksFor: {
@@ -47,7 +52,7 @@ const websiteJsonLd = {
   '@context': 'https://schema.org',
   '@type': 'WebSite',
   name: 'Jose Luis Tórtola Cervera — Portfolio',
-  url: esUrl,
+  url: homeEsUrl,
   inLanguage: lang,
 };
 

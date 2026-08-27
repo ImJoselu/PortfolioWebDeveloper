@@ -3,7 +3,21 @@ import joseLuisPhoto from '../assets/photos/jltortola.jpg';
 import javaCertPhoto from '../assets/photos/certificado-java.png';
 import concesionarioVueImg from '../assets/projects/concesionario-vue.jpg';
 import concesionarioPhpImg from '../assets/projects/concesionario-php.jpg';
-import valnexJavaImg from '../assets/projects/valnex-java.png';
+import valnexLogo from '../assets/projects/valnex-logo.png';
+import valnexDashboard from '../assets/projects/valnex/dashboard.png';
+import valnexPatrimonio from '../assets/projects/valnex/patrimonio.png';
+import valnexInversiones from '../assets/projects/valnex/inversiones.png';
+import valnexAutomatizaciones from '../assets/projects/valnex/automatizaciones.png';
+import valnexApuestas from '../assets/projects/valnex/apuestas.png';
+import valnexMobile from '../assets/projects/valnex/dashboard_mobile.png';
+import nordaLogo from '../assets/projects/norda-logo.png';
+import nordaHome from '../assets/projects/norda/home.png';
+import nordaCatalog from '../assets/projects/norda/catalog.png';
+import nordaProduct from '../assets/projects/norda/product-detail.png';
+import nordaMap from '../assets/projects/norda/origins-map.png';
+import nordaFinder from '../assets/projects/norda/finder.png';
+import nordaJournal from '../assets/projects/norda/journal.png';
+import nordaAdmin from '../assets/projects/norda/admin-dashboard.png';
 
 /**
  * Language-neutral facts only (dates, names, links, tech, images).
@@ -99,11 +113,26 @@ export const certifications: CertificationEntry[] = [
   },
 ];
 
+export type ProjectId = 'concesionario-vue' | 'concesionario-php' | 'valnex' | 'norda';
+
+/** Slug of a project guide page: /proyectos/<slug> (es) and /en/projects/<slug> (en). */
+export type ProjectGuideSlug = 'valnex' | 'norda';
+
 export type Project = {
-  id: 'concesionario-vue' | 'concesionario-php' | 'valnex';
+  id: ProjectId;
   repoUrl: string;
   image: ImageMetadata;
+  /** How the card image fills its frame — logos need `contain`, screenshots `cover`. */
+  imageFit?: 'cover' | 'contain';
   stack: string[];
+  /** Present only when the project has a guide page with its own tour. */
+  guide?: {
+    slug: ProjectGuideSlug;
+    /** Tour screenshots keyed by the shot id used in src/i18n/{es,en}.ts. */
+    shots: Record<string, ImageMetadata>;
+    /** Shots rendered narrow (mobile captures). */
+    portraitShots?: string[];
+  };
 };
 
 export const projects: Project[] = [
@@ -122,18 +151,88 @@ export const projects: Project[] = [
   {
     id: 'valnex',
     repoUrl: 'https://github.com/ImJoselu/VALNEX',
-    image: valnexJavaImg,
+    image: valnexLogo,
+    imageFit: 'contain',
     stack: ['Java', 'Spring Boot', 'SQLite', 'React', 'TypeScript'],
+    guide: {
+      slug: 'valnex',
+      shots: {
+        dashboard: valnexDashboard,
+        patrimonio: valnexPatrimonio,
+        inversiones: valnexInversiones,
+        automatizaciones: valnexAutomatizaciones,
+        apuestas: valnexApuestas,
+        mobile: valnexMobile,
+      },
+      portraitShots: ['mobile'],
+    },
+  },
+  {
+    id: 'norda',
+    repoUrl: 'https://github.com/ImJoselu/NORDA',
+    image: nordaLogo,
+    imageFit: 'contain',
+    stack: ['Java', 'Spring Boot', 'PostgreSQL', 'React', 'TypeScript', 'Stripe'],
+    guide: {
+      slug: 'norda',
+      shots: {
+        home: nordaHome,
+        catalog: nordaCatalog,
+        product: nordaProduct,
+        map: nordaMap,
+        finder: nordaFinder,
+        journal: nordaJournal,
+        admin: nordaAdmin,
+      },
+    },
+  },
+];
+
+/**
+ * Prepared but deliberately not published yet — these entries carry no image
+ * and are never rendered, so they stay off the site until they're ready.
+ *
+ * To publish one: drop its image in `src/assets/projects/`, move the entry into
+ * `projects` (adding `image`), and add its id to `ProjectId`. The translated
+ * copy already lives in `projects.items` in src/i18n/{es,en}.ts.
+ */
+export type UpcomingProject = {
+  id: 'sport-padel-sagunt';
+  repoUrl: string;
+  /** Live site the project is a redesign of. */
+  currentSiteUrl?: string;
+  stack: string[];
+};
+
+export const upcomingProjects: UpcomingProject[] = [
+  {
+    id: 'sport-padel-sagunt',
+    repoUrl: 'https://github.com/ImJoselu/PadelSportSagunt',
+    currentSiteUrl: 'https://www.sportpadelsagunt.es/',
+    stack: [
+      'Next.js',
+      'App Router',
+      'React',
+      'Tailwind CSS',
+      'Radix UI',
+      'Motion',
+      'Server Actions',
+      'Drizzle ORM',
+      'PostgreSQL',
+      'Stripe',
+      'Resend',
+      'SSE / WebSocket',
+    ],
   },
 ];
 
 export const skills = {
-  frontend: ['Vue.js', 'Angular', 'TypeScript', 'JavaScript', 'HTML', 'CSS', 'Astro'],
-  backend: ['Java', 'Spring / Spring Boot', 'PHP', 'Laravel'],
+  frontend: ['Vue.js', 'Angular', 'TypeScript', 'JavaScript', 'Astro'],
+  backend: ['Java', 'Spring / Spring Boot', 'PHP / Laravel'],
   integrations: ['SOAP', 'REST', 'WSDL'],
   databases: ['MySQL', 'MariaDB', 'PostgreSQL', 'Oracle'],
   tools: ['Git', 'JIRA', 'Jenkins', 'Postman', 'Docker'],
-  ai: ['Claude', 'Claude Agents', 'ChatGPT', 'GitHub Copilot'],
+  ai: ['Claude', 'Claude Agents', 'Claude Skills', 'ChatGPT', 'GitHub Copilot'],
 } as const;
 
 export const interestPoints = ['drivingLicense', 'availability', 'workMode'] as const;

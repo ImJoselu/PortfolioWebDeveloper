@@ -1,28 +1,52 @@
 ---
 import { Image } from 'astro:assets';
 import Icon from './Icon.astro';
+import { withBase, projectGuidePath } from '../i18n/utils';
+import type { Lang } from '../i18n/utils';
 import type { Project } from '../data/profile';
 import type { Dictionary } from '../i18n/types';
 
 interface Props {
+  lang: Lang;
   project: Project;
   item: Dictionary['projects']['items'][keyof Dictionary['projects']['items']];
   dict: Dictionary;
 }
 
-const { project, item, dict } = Astro.props;
+const { lang, project, item, dict } = Astro.props;
+
+// Projects with a guide page link there from the image; the rest link to the repo.
+const guideHref = project.guide ? withBase(projectGuidePath(lang, project.guide.slug)) : null;
+const imageHref = guideHref ?? project.repoUrl;
+const isExternalImageLink = imageHref === project.repoUrl;
+const imageClass =
+  project.imageFit === 'contain'
+    ? 'aspect-[8/5] w-full bg-bg object-contain p-6 transition-transform duration-300 group-hover:scale-[1.03]'
+    : 'aspect-[8/5] w-full object-cover transition-transform duration-300 group-hover:scale-[1.03]';
 ---
 
 <article class="reveal group flex h-full flex-col overflow-hidden rounded-lg border border-border bg-bg-elevated">
-  <a href={project.repoUrl} target="_blank" rel="noopener noreferrer" class="block overflow-hidden">
+  <a
+    href={imageHref}
+    target={isExternalImageLink ? '_blank' : undefined}
+    rel={isExternalImageLink ? 'noopener noreferrer' : undefined}
+    class="relative block overflow-hidden"
+  >
     <Image
       src={project.image}
       alt={item.name}
       width={640}
       height={400}
       loading="lazy"
-      class="aspect-[8/5] w-full object-cover transition-transform duration-300 group-hover:scale-[1.03]"
+      class={imageClass}
     />
+    {
+      guideHref && (
+        <span class="absolute right-3 top-3 rounded border border-border bg-bg/85 px-2 py-1 font-mono text-[0.65rem] uppercase tracking-widest text-accent backdrop-blur">
+          {dict.projects.guideBadge}
+        </span>
+      )
+    }
   </a>
   <div class="flex flex-1 flex-col gap-3 p-5">
     <h3 class="text-lg font-semibold text-text">{item.name}</h3>
@@ -36,14 +60,25 @@ const { project, item, dict } = Astro.props;
       {project.stack.map((tech) => <li class="rounded border border-border px-2 py-1 text-text-muted">{tech}</li>)}
     </ul>
 
-    <a
-      href={project.repoUrl}
-      target="_blank"
-      rel="noopener noreferrer"
-      class="mt-1 inline-flex items-center gap-1.5 text-sm font-medium text-accent hover:underline"
-    >
-      {dict.projects.viewRepo}
-      <Icon name="external" class="h-3.5 w-3.5" />
-    </a>
+    <div class="mt-1 flex flex-wrap items-center gap-x-4 gap-y-2">
+      <a
+        href={project.repoUrl}
+        target="_blank"
+        rel="noopener noreferrer"
+        class="inline-flex items-center gap-1.5 text-sm font-medium text-accent hover:underline"
+      >
+        {dict.projects.viewRepo}
+        <Icon name="external" class="h-3.5 w-3.5" />
+      </a>
+
+      {
+        guideHref && (
+          <a href={guideHref} class="inline-flex items-center gap-1.5 text-sm font-medium text-accent hover:underline">
+            {dict.projects.viewGuide}
+            <Icon name="arrow-right" class="h-3.5 w-3.5" />
+          </a>
+        )
+      }
+    </div>
   </div>
 </article>

@@ -59,7 +59,7 @@ export const es: Dictionary = {
     ],
     factsTitle: 'Datos rápidos',
     facts: {
-      location: 'Ubicación',
+      location: 'Ubicación actual',
       languages: 'Idiomas',
       availability: 'Disponibilidad',
       workMode: 'Modalidad',
@@ -106,9 +106,10 @@ export const es: Dictionary = {
   projects: {
     kicker: 'Proyectos',
     title: 'Proyectos personales',
-    intro:
-      'Proyectos personales, fuera del trabajo en cliente, para practicar arquitectura frontend y comparar enfoques (SPA frente a monolito).',
+    intro: 'Proyectos personales, desarrollos para practicar, todo fuera de empresa.',
     viewRepo: 'Ver repositorio',
+    viewGuide: 'Ver imágenes del proyecto y más información',
+    guideBadge: 'Con guía',
     stackLabel: 'Stack',
     roleLabel: 'Rol',
     roleValue: 'Desarrollo individual, de principio a fin.',
@@ -129,7 +130,145 @@ export const es: Dictionary = {
       valnex: {
         name: 'VALNEX — panel financiero personal',
         description:
-          'Panel financiero multiusuario que centraliza cuentas, efectivo, fondos, acciones y cripto en una sola vista. Backend en Java/Spring Boot como única fuente de verdad para los cálculos, con SQLite embebido y frontend en React con TypeScript.',
+          'Simulacro de aplicación real financiera multiusuario que centraliza cuentas, efectivo, fondos, acciones y cripto en una sola vista. Backend en Java/Spring Boot como única fuente de verdad para los cálculos, con SQLite embebido y frontend en React con TypeScript.',
+      },
+      norda: {
+        name: 'NØRDA — plataforma de café de especialidad',
+        description:
+          'Simulacro de aplicación real de cafetería que centraliza el catálogo, pedidos, pagos y gestión del negocio en una sola plataforma. Arquitectura full-stack con backend en Java/Spring Boot y frontend en React como base para la gestión de pedidos y usuarios. DEMO de pagos reales con Stripe SDK.',
+      },
+      'sport-padel-sagunt': {
+        name: 'Sport Padel Sagunt — rediseño del club',
+        description:
+          'Rediseño completo de la web de un club de pádel de Puerto de Sagunto, desarrollado junto a un compañero: reservas de pista, pagos y avisos en tiempo real sobre Next.js con App Router, Drizzle ORM y PostgreSQL.',
+      },
+    },
+  },
+  projectGuide: {
+    backToProjects: 'Volver a proyectos',
+    kicker: 'Guía del proyecto',
+    repoLabel: 'Ver repositorio en GitHub',
+    guides: {
+      valnex: {
+        tagline: 'Tu patrimonio. Una sola visión.',
+        metaDescription:
+          'Guía visual de VALNEX: panel financiero multiusuario con backend Java/Spring Boot y frontend React. Recorrido por el dashboard, patrimonio, inversiones, automatizaciones y apuestas.',
+        intro: [
+          'VALNEX es un simulacro de aplicación financiera real: configuras tus datos una vez (saldos, inversiones, reglas de aportación) y la aplicación se encarga de generar los movimientos recurrentes, devengar los intereses de las cuentas remuneradas, actualizar el precio de mercado de las inversiones y reconstruir la evolución del patrimonio con snapshots periódicos.',
+          'El backend en Java/Spring Boot es la única fuente de verdad: todo cálculo financiero se hace una vez en el servidor y el frontend solo pinta lo que ya viene calculado. Eso permite no mezclar nunca dos conceptos que se confunden con facilidad — el capital que aportaste tú y el beneficio que ha generado la inversión.',
+        ],
+        tourTitle: 'Recorrido por la aplicación',
+        shots: [
+          {
+            id: 'dashboard',
+            title: 'Dashboard',
+            description:
+              'Punto de entrada tras iniciar sesión: total del patrimonio, variación desde el último snapshot y evolución en el tiempo. Un botón de privacidad oculta todas las cantidades de golpe, útil para enseñar la app a alguien.',
+          },
+          {
+            id: 'patrimonio',
+            title: 'Mi patrimonio',
+            description:
+              'Distribución del dinero por categoría (banco, fondos, cuenta remunerada, riesgo alto, apuestas). Desde aquí se dan de alta cuentas bancarias, efectivo o cuenta remunerada, y se aporta dinero a una inversión existente sin salir de la pantalla.',
+          },
+          {
+            id: 'inversiones',
+            title: 'Inversiones',
+            description:
+              'Cada posición muestra valor actual, capital aportado y rentabilidad, recalculados a partir del histórico real de operaciones. Los activos se identifican por ticker (acciones, con precio automático) o por ISIN (fondos UCITS, precio manual).',
+          },
+          {
+            id: 'automatizaciones',
+            title: 'Automatizaciones',
+            description:
+              'Reglas recurrentes (diaria, semanal, quincenal, mensual, anual) que aportan a una cuenta o a una inversión cuando toca, incluidos ingresos externos como la nómina. Cada ejecución — o cada vez que se salta por falta de saldo — queda en un log consultable.',
+          },
+          {
+            id: 'apuestas',
+            title: 'Apuestas',
+            description:
+              'Sección opcional, desactivada por defecto en cualquier cuenta nueva. Cuando se activa, muestra resultado neto, ROI y volumen apostado por casa de apuestas.',
+          },
+          {
+            id: 'mobile',
+            title: 'En móvil',
+            description: 'La misma interfaz adaptada a pantalla pequeña, sin recortar funcionalidad.',
+          },
+        ],
+        highlightsTitle: 'Decisiones técnicas',
+        highlights: [
+          'Backend como única fuente de verdad: patrimonio, rentabilidad, intereses y resultado de apuestas se calculan en el servidor, nunca en el cliente.',
+          'Multiusuario real con aislamiento verificado por tests de integración: nadie puede alcanzar por API los datos de otra persona.',
+          'SQLite embebido — sin servidor de base de datos que instalar ni administrar; la aplicación entera arranca desde un único fichero.',
+          'Asistente de bienvenida en el primer inicio de sesión: unas pocas preguntas dejan la cuenta con datos reales en vez de un dashboard vacío.',
+          'Panel de administración con el listado de cuentas de la instalación y la configuración global de los procesos automáticos.',
+          'Copia de seguridad exportable e importable en JSON, modo claro/oscuro y borrado permanente de la propia cuenta con doble confirmación.',
+        ],
+        stackTitle: 'Stack',
+      },
+      norda: {
+        tagline: 'Descubre el café detrás de cada origen.',
+        metaDescription:
+          'Guía visual de NØRDA: plataforma full-stack de café de especialidad con backend Java/Spring Boot, frontend React y pagos con Stripe SDK. Recorrido por catálogo, mapa de orígenes, checkout y panel de administración.',
+        intro: [
+          'NØRDA es un simulacro de aplicación real de cafetería: catálogo con trazabilidad completa, mapa interactivo de orígenes, motor de recomendación propio, ecommerce con checkout e inventario real, suscripciones, reseñas, blog editorial y un panel de administración completo.',
+          'El backend en Java/Spring Boot es la única fuente de verdad de precio, stock, rol y pago, con una arquitectura de puertos y adaptadores para las integraciones externas — el SDK de Stripe está integrado como demostración de pagos reales sin acoplar el dominio a un proveedor concreto.',
+        ],
+        tourTitle: 'Recorrido por la aplicación',
+        shots: [
+          {
+            id: 'home',
+            title: 'Portada',
+            description:
+              'Entrada a la plataforma: presentación de la marca, cafés destacados y accesos directos al catálogo, al mapa de orígenes y al recomendador.',
+          },
+          {
+            id: 'catalog',
+            title: 'Catálogo',
+            description:
+              'Filtrado por país, región, proceso, tueste y método de preparación. Precio y disponibilidad vienen siempre del backend, nunca calculados en el cliente.',
+          },
+          {
+            id: 'product',
+            title: 'Ficha de producto',
+            description:
+              'Trazabilidad completa del lote — productor, finca, cosecha — con variantes de molienda y formato, y reseñas que solo puede dejar quien compró ese café.',
+          },
+          {
+            id: 'map',
+            title: 'Mapa de orígenes',
+            description:
+              'Navegación del origen del café sobre un mapa interactivo, mundial y por país, sin depender de claves de API de terceros.',
+          },
+          {
+            id: 'finder',
+            title: 'Coffee Finder',
+            description:
+              'Cinco preguntas y hasta tres recomendaciones explicadas ("te recomendamos X porque…"), resueltas por un motor de reglas determinista propio en lugar de una caja negra.',
+          },
+          {
+            id: 'journal',
+            title: 'Journal',
+            description:
+              'Blog editorial con artículos sobre método, origen y producción, con SEO dinámico y JSON-LD por página.',
+          },
+          {
+            id: 'admin',
+            title: 'Panel de administración',
+            description:
+              'Métricas reales, gestión de productos con generación automática de variantes, pedidos con máquina de estados, inventario, clientes, reseñas, cupones y orígenes.',
+          },
+        ],
+        highlightsTitle: 'Decisiones técnicas',
+        highlights: [
+          'Checkout con reserva atómica de inventario, cupones, cálculo de envío e impuestos — todo validado en el backend.',
+          'Pagos con el SDK de Stripe integrado tras una arquitectura de puertos y adaptadores, de modo que el dominio no depende del proveedor.',
+          'PostgreSQL con migraciones Flyway aplicadas al arrancar: no hay paso manual de base de datos.',
+          'Autenticación con JWT y cookie de refresco; no existe endpoint público para crear administradores, por decisión de seguridad.',
+          'Tests reales en las dos capas: JUnit 5, Mockito y Testcontainers en backend; Vitest y React Testing Library en frontend; Playwright para E2E y accesibilidad con axe-core.',
+          'Cada decisión de arquitectura documentada como ADR, con sus límites conocidos.',
+        ],
+        stackTitle: 'Stack',
       },
     },
   },
@@ -194,20 +333,14 @@ export const es: Dictionary = {
     emailLabel: 'Email',
     linkedinLabel: 'LinkedIn',
     githubLabel: 'GitHub',
-    locationLabel: 'Ubicación',
+    locationLabel: 'Ubicación actual',
   },
   builtWith: {
     kicker: 'Sobre este sitio',
     title: 'Con qué está construido',
     intro: 'Este portfolio es un proyecto en sí mismo: sin plantillas, con el código abierto en GitHub.',
     repoLabel: 'Ver el código en GitHub',
-    items: [
-      { name: 'Astro', description: 'Generador de sitios estáticos' },
-      { name: 'TypeScript', description: 'Tipado estático' },
-      { name: 'Tailwind CSS', description: 'Estilos' },
-      { name: 'GitHub Actions', description: 'Integración y despliegue continuo' },
-      { name: 'GitHub Pages', description: 'Alojamiento' },
-    ],
+    items: ['Astro', 'TypeScript', 'Tailwind CSS', 'GitHub Actions', 'GitHub Pages'],
   },
   footer: {
     backToTop: 'Volver arriba',
