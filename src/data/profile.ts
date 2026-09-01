@@ -267,7 +267,7 @@ export const upcomingProjects: UpcomingProject[] = [
 
 export const skills = {
   frontend: ['Vue.js', 'Angular', 'TypeScript', 'JavaScript', 'Astro'],
-  backend: ['Java', 'Spring / Spring Boot', 'PHP / Laravel'],
+  backend: ['Java', 'Spring / Spring Boot', 'PHP / Laravel', 'JUnit', 'Mockito'],
   integrations: ['SOAP', 'REST', 'WSDL'],
   databases: ['MySQL', 'MariaDB', 'PostgreSQL', 'Oracle'],
   tools: ['Git', 'JIRA', 'Jenkins', 'Postman', 'Docker'],
