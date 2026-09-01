@@ -15,7 +15,7 @@ const { dict } = Astro.props;
 
 <Section id="education" kicker={dict.education.kicker} title={dict.education.title}>
   <div class="grid gap-10 lg:grid-cols-2 items-start">
-    <ul class="reveal space-y-5">
+    <ul class="reveal space-y-5 mt-0">
       {
         education.map((entry) => (
           <li class="border-l-2 border-border pl-4">
@@ -29,7 +29,7 @@ const { dict } = Astro.props;
       }
     </ul>
 
-    <div class="reveal mt-0 lg:-mt-4">
+    <div class="reveal mt-0 lg:-mt-8">
       <h3 class="font-mono text-xs uppercase tracking-[0.15em] text-text-muted">{dict.education.certificationsTitle}</h3>
       <ul class="space-y-4">
         {
