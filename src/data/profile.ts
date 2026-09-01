@@ -91,12 +91,19 @@ export const education: EducationEntry[] = [
 ];
 
 export type CertificationEntry = {
-  id: 'java-cert' | 'azure-foundry' | 'pl-600';
+  id: 'java-cert' | 'azure-foundry' | 'pl-600' | 'santander-negociacion';
   meta: string;
 } & ({ kind: 'image'; image: ImageMetadata } | { kind: 'pdf'; pdfPath: string; icon: 'cloud' | 'layers' });
 
 export const certifications: CertificationEntry[] = [
   { id: 'java-cert', meta: '2023', kind: 'image', image: javaCertPhoto },
+  {
+    id: 'santander-negociacion',
+    meta: '2026 · 8 h',
+    kind: 'pdf',
+    pdfPath: '/certifications/Santander_Negociacion.pdf',
+    icon: 'cloud',
+  },
   {
     id: 'azure-foundry',
     meta: '2026 · 6 h',
@@ -110,14 +117,7 @@ export const certifications: CertificationEntry[] = [
     kind: 'pdf',
     pdfPath: '/certifications/PL-600-Power-Platform-Solution-Architect.pdf',
     icon: 'layers',
-  },
-  {
-    id: 'santander-negociacion',
-    meta: '2024 · 4 h',
-    kind: 'pdf',
-    pdfPath: '/certifications/Santander_Negociacion.pdf',
-    icon: 'cloud',
-  },
+  }
 ];
 
 export type ProjectId = 'concesionario-vue' | 'concesionario-php' | 'valnex' | 'norda';
