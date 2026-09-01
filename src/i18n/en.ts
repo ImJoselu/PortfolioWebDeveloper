@@ -235,27 +235,109 @@ export const en: Dictionary = {
           },
           {
             id: 'map',
-            title: 'Origins map',
-            description:
-              'Browsing coffee origin on an interactive map, worldwide and per country, with no third-party API keys involved.',
+            title: 'Worldwide origins map',
+            description: 'Browsing coffee origin on an interactive map built with Leaflet, with no third-party API keys involved.',
           },
           {
-            id: 'finder',
-            title: 'Coffee Finder',
+            id: 'originsFlags',
+            title: 'Countries by continent',
+            description: 'Origin countries grouped by continent, each with its flag, as the entry point into the map.',
+          },
+          {
+            id: 'countryDetail',
+            title: 'Country detail',
+            description: 'A single country view with a map of its coffee-growing regions and the coffees available from each.',
+          },
+          {
+            id: 'region',
+            title: 'Region detail',
+            description: 'One level deeper: producers and coffees tied to a specific origin region.',
+          },
+          {
+            id: 'finderQuiz',
+            title: 'Coffee Finder — quiz',
+            description: 'Five quick questions about brewing method, intensity and flavor notes that drive the recommendation.',
+          },
+          {
+            id: 'finderResults',
+            title: 'Coffee Finder — results',
             description:
-              'Five questions and up to three explained recommendations ("we suggest X because…"), resolved by a deterministic in-house rules engine rather than a black box.',
+              'Up to three explained recommendations ("we suggest X because…"), resolved by a deterministic in-house rules engine rather than a black box.',
+          },
+          {
+            id: 'cart',
+            title: 'Cart',
+            description: 'A side cart with the order summary, reachable from any page without losing navigation context.',
+          },
+          {
+            id: 'checkoutDatos',
+            title: 'Checkout — contact details',
+            description: 'First step of a five-stage guided checkout, with the order summary always visible.',
+          },
+          {
+            id: 'checkoutDireccion',
+            title: 'Checkout — shipping address',
+            description: 'Second step: delivery address, validated before moving on to the shipping method.',
+          },
+          {
+            id: 'checkoutEnvio',
+            title: 'Checkout — shipping method',
+            description: 'Third step: shipping method selection, with cost recalculated on the backend on every change.',
+          },
+          {
+            id: 'checkoutPago',
+            title: 'Checkout — payment',
+            description: 'Fourth step: a demo-mode payment gateway sitting on top of the real Stripe SDK integration.',
+          },
+          {
+            id: 'checkoutConfirmacion',
+            title: 'Checkout — confirmation',
+            description: 'Last step: order confirmed after atomic inventory reservation and server-side shipping and tax calculation.',
+          },
+          {
+            id: 'login',
+            title: 'Login',
+            description: 'Account access, the entry point for checkout, reviews and subscriptions.',
+          },
+          {
+            id: 'register',
+            title: 'Registration',
+            description: 'Account creation, a required step before buying, reviewing or subscribing.',
           },
           {
             id: 'journal',
-            title: 'Journal',
-            description:
-              'An editorial blog with articles on brewing, origin and production, with dynamic SEO and per-page JSON-LD.',
+            title: 'Journal — listing',
+            description: 'An editorial blog with 8 real articles on brewing, origin and production.',
+          },
+          {
+            id: 'journalPost',
+            title: 'Journal — article',
+            description: 'A single article with dynamic SEO and per-page JSON-LD, not just on the listing page.',
           },
           {
             id: 'admin',
-            title: 'Admin panel',
-            description:
-              'Real metrics, product management with automatic variant generation, orders driven by a state machine, inventory, customers, reviews, coupons and origins.',
+            title: 'Admin panel — overview',
+            description: 'A dashboard with real metrics: sales, average ticket and customers, not placeholder data.',
+          },
+          {
+            id: 'adminOrders',
+            title: 'Admin panel — orders',
+            description: 'Order management driven by an explicit state machine rather than a plain editable status field.',
+          },
+          {
+            id: 'adminProducts',
+            title: 'Admin panel — products',
+            description: 'Product management with automatic generation of grind and format variants.',
+          },
+          {
+            id: 'adminOrigins',
+            title: 'Admin panel — origins',
+            description: 'Managing the countries, regions and producers that feed the catalog and the origins map.',
+          },
+          {
+            id: 'adminCustomers',
+            title: 'Admin panel — customers',
+            description: 'A listing of platform customers, with their order history reachable from the panel itself.',
           },
         ],
         highlightsTitle: 'Technical decisions',

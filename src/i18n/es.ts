@@ -236,27 +236,110 @@ export const es: Dictionary = {
           },
           {
             id: 'map',
-            title: 'Mapa de orígenes',
+            title: 'Mapa mundial de orígenes',
             description:
-              'Navegación del origen del café sobre un mapa interactivo, mundial y por país, sin depender de claves de API de terceros.',
+              'Navegación del origen del café sobre un mapa interactivo construido con Leaflet, sin depender de claves de API de terceros.',
           },
           {
-            id: 'finder',
-            title: 'Coffee Finder',
+            id: 'originsFlags',
+            title: 'Países por continente',
+            description: 'Listado de países de origen agrupados por continente, cada uno con su bandera, como puerta de entrada al mapa.',
+          },
+          {
+            id: 'countryDetail',
+            title: 'Ficha de país',
+            description: 'Vista de un país concreto con el mapa de sus regiones cafeteras y los cafés disponibles de cada una.',
+          },
+          {
+            id: 'region',
+            title: 'Ficha de región',
+            description: 'Un nivel más de detalle: productores y cafés asociados a una región de origen específica.',
+          },
+          {
+            id: 'finderQuiz',
+            title: 'Coffee Finder — cuestionario',
+            description: 'Cinco preguntas rápidas sobre método de preparación, intensidad y notas de sabor para guiar la recomendación.',
+          },
+          {
+            id: 'finderResults',
+            title: 'Coffee Finder — resultado',
             description:
-              'Cinco preguntas y hasta tres recomendaciones explicadas ("te recomendamos X porque…"), resueltas por un motor de reglas determinista propio en lugar de una caja negra.',
+              'Hasta tres recomendaciones explicadas ("te recomendamos X porque…"), resueltas por un motor de reglas determinista propio en lugar de una caja negra.',
+          },
+          {
+            id: 'cart',
+            title: 'Carrito',
+            description: 'Carrito lateral con el resumen del pedido, accesible desde cualquier página sin perder el contexto de navegación.',
+          },
+          {
+            id: 'checkoutDatos',
+            title: 'Checkout — datos de contacto',
+            description: 'Primer paso de un checkout guiado en cinco etapas, con el resumen del pedido siempre visible.',
+          },
+          {
+            id: 'checkoutDireccion',
+            title: 'Checkout — dirección de envío',
+            description: 'Segundo paso: dirección de entrega, validada antes de continuar al método de envío.',
+          },
+          {
+            id: 'checkoutEnvio',
+            title: 'Checkout — método de envío',
+            description: 'Tercer paso: selección de método de envío, con el coste recalculado en el backend en cada cambio.',
+          },
+          {
+            id: 'checkoutPago',
+            title: 'Checkout — pago',
+            description: 'Cuarto paso: pasarela de pago en modo demo sobre la integración real del SDK de Stripe.',
+          },
+          {
+            id: 'checkoutConfirmacion',
+            title: 'Checkout — confirmación',
+            description: 'Último paso: pedido confirmado tras la reserva atómica de inventario y el cálculo de envío e impuestos en servidor.',
+          },
+          {
+            id: 'login',
+            title: 'Inicio de sesión',
+            description: 'Acceso a la cuenta, punto de partida para el checkout, las reseñas y las suscripciones.',
+          },
+          {
+            id: 'register',
+            title: 'Registro',
+            description: 'Creación de cuenta, paso previo obligatorio para poder comprar, reseñar o suscribirse.',
           },
           {
             id: 'journal',
-            title: 'Journal',
-            description:
-              'Blog editorial con artículos sobre método, origen y producción, con SEO dinámico y JSON-LD por página.',
+            title: 'Journal — listado',
+            description: 'Blog editorial con 8 artículos reales sobre método, origen y producción del café.',
+          },
+          {
+            id: 'journalPost',
+            title: 'Journal — artículo',
+            description: 'Artículo individual con SEO dinámico y JSON-LD por página, no solo en el listado.',
           },
           {
             id: 'admin',
-            title: 'Panel de administración',
-            description:
-              'Métricas reales, gestión de productos con generación automática de variantes, pedidos con máquina de estados, inventario, clientes, reseñas, cupones y orígenes.',
+            title: 'Panel de administración — resumen',
+            description: 'Dashboard con métricas reales: ventas, ticket medio y clientes, no datos de relleno.',
+          },
+          {
+            id: 'adminOrders',
+            title: 'Panel de administración — pedidos',
+            description: 'Gestión de pedidos con máquina de estados explícita en lugar de un simple campo de estado editable.',
+          },
+          {
+            id: 'adminProducts',
+            title: 'Panel de administración — productos',
+            description: 'Gestión de productos con generación automática de variantes de molienda y formato.',
+          },
+          {
+            id: 'adminOrigins',
+            title: 'Panel de administración — orígenes',
+            description: 'Gestión de países, regiones y productores que alimentan el catálogo y el mapa de orígenes.',
+          },
+          {
+            id: 'adminCustomers',
+            title: 'Panel de administración — clientes',
+            description: 'Listado de clientes de la plataforma, con su historial de pedidos accesible desde el propio panel.',
           },
         ],
         highlightsTitle: 'Decisiones técnicas',

@@ -14,9 +14,26 @@ import nordaHome from '../assets/projects/norda/home.png';
 import nordaCatalog from '../assets/projects/norda/catalog.png';
 import nordaProduct from '../assets/projects/norda/product-detail.png';
 import nordaMap from '../assets/projects/norda/origins-map.png';
-import nordaFinder from '../assets/projects/norda/finder.png';
+import nordaOriginsFlags from '../assets/projects/norda/origins-flags.png';
+import nordaCountryDetail from '../assets/projects/norda/country-detail.png';
+import nordaRegion from '../assets/projects/norda/region.png';
+import nordaFinderQuiz from '../assets/projects/norda/finder-quiz.png';
+import nordaFinderResults from '../assets/projects/norda/finder-results.png';
+import nordaCart from '../assets/projects/norda/cart.png';
+import nordaCheckoutDatos from '../assets/projects/norda/checkout-datos.png';
+import nordaCheckoutDireccion from '../assets/projects/norda/checkout-direccion.png';
+import nordaCheckoutEnvio from '../assets/projects/norda/checkout-envio.png';
+import nordaCheckoutPago from '../assets/projects/norda/checkout-pago.png';
+import nordaCheckoutConfirmacion from '../assets/projects/norda/checkout-confirmacion.png';
+import nordaLogin from '../assets/projects/norda/login.png';
+import nordaRegister from '../assets/projects/norda/register.png';
 import nordaJournal from '../assets/projects/norda/journal.png';
-import nordaAdmin from '../assets/projects/norda/admin-dashboard.png';
+import nordaJournalPost from '../assets/projects/norda/journal-post.png';
+import nordaAdminDashboard from '../assets/projects/norda/admin-dashboard.png';
+import nordaAdminOrders from '../assets/projects/norda/admin-orders.png';
+import nordaAdminProducts from '../assets/projects/norda/admin-products.png';
+import nordaAdminOrigins from '../assets/projects/norda/admin-origins.png';
+import nordaAdminCustomers from '../assets/projects/norda/admin-customers.png';
 
 /**
  * Language-neutral facts only (dates, names, links, tech, images).
@@ -185,9 +202,26 @@ export const projects: Project[] = [
         catalog: nordaCatalog,
         product: nordaProduct,
         map: nordaMap,
-        finder: nordaFinder,
+        originsFlags: nordaOriginsFlags,
+        countryDetail: nordaCountryDetail,
+        region: nordaRegion,
+        finderQuiz: nordaFinderQuiz,
+        finderResults: nordaFinderResults,
+        cart: nordaCart,
+        checkoutDatos: nordaCheckoutDatos,
+        checkoutDireccion: nordaCheckoutDireccion,
+        checkoutEnvio: nordaCheckoutEnvio,
+        checkoutPago: nordaCheckoutPago,
+        checkoutConfirmacion: nordaCheckoutConfirmacion,
+        login: nordaLogin,
+        register: nordaRegister,
         journal: nordaJournal,
-        admin: nordaAdmin,
+        journalPost: nordaJournalPost,
+        admin: nordaAdminDashboard,
+        adminOrders: nordaAdminOrders,
+        adminProducts: nordaAdminProducts,
+        adminOrigins: nordaAdminOrigins,
+        adminCustomers: nordaAdminCustomers,
       },
     },
   },
