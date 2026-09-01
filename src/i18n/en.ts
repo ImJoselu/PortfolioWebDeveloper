@@ -322,6 +322,7 @@ export const en: Dictionary = {
       'java-cert': { name: 'Professional Java Certificate' },
       'azure-foundry': { name: 'Generative AI innovation: what’s new in Azure AI Foundry' },
       'pl-600': { name: 'PL-600: Microsoft Power Platform Solution Architect' },
+      'santander-negociacion': { name: 'Santander Negotiation Certification' },
     },
   },
   contact: {

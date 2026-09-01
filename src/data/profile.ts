@@ -111,6 +111,13 @@ export const certifications: CertificationEntry[] = [
     pdfPath: '/certifications/PL-600-Power-Platform-Solution-Architect.pdf',
     icon: 'layers',
   },
+  {
+    id: 'santander-negociacion',
+    meta: '2024 · 4 h',
+    kind: 'pdf',
+    pdfPath: '/certifications/Santander_Negociacion.pdf',
+    icon: 'cloud',
+  },
 ];
 
 export type ProjectId = 'concesionario-vue' | 'concesionario-php' | 'valnex' | 'norda';
