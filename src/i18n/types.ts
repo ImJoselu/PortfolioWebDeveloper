@@ -147,10 +147,15 @@ export interface Dictionary {
   education: {
     kicker: string;
     title: string;
+    academicTitle: string;
     certificationsTitle: string;
     viewPdf: string;
     items: { 'grado-superior': EducationCopy; 'grado-medio': EducationCopy };
-    certifications: { 'java-cert': CertificationCopy; 'azure-foundry': CertificationCopy; 'pl-600': CertificationCopy };
+    certifications: {
+      'azure-foundry': CertificationCopy;
+      'pl-600': CertificationCopy;
+      'santander-negociacion': CertificationCopy;
+    };
   };
   contact: {
     kicker: string;

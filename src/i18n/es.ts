@@ -314,6 +314,7 @@ export const es: Dictionary = {
   education: {
     kicker: 'Formación',
     title: 'Educación y certificaciones',
+    academicTitle: 'Formación académica',
     certificationsTitle: 'Certificaciones',
     viewPdf: 'Ver certificado (PDF)',
     items: {
@@ -321,7 +322,6 @@ export const es: Dictionary = {
       'grado-medio': { name: 'Grado Medio — Sistemas Microinformáticos y Redes' },
     },
     certifications: {
-      'java-cert': { name: 'Certificado Profesional Java' },
       'azure-foundry': { name: 'Innovación con IA generativa: novedades en Azure AI Foundry' },
       'pl-600': { name: 'PL-600: Microsoft Power Platform Solution Architect' },
       'santander-negociacion': { name: 'Certificación en Negociación - Banco Santander' },

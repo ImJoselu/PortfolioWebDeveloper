@@ -312,6 +312,7 @@ export const en: Dictionary = {
   education: {
     kicker: 'Education',
     title: 'Education & certifications',
+    academicTitle: 'Academic background',
     certificationsTitle: 'Certifications',
     viewPdf: 'View certificate (PDF)',
     items: {
@@ -319,7 +320,6 @@ export const en: Dictionary = {
       'grado-medio': { name: 'Vocational Degree — Microcomputer Systems and Networks' },
     },
     certifications: {
-      'java-cert': { name: 'Professional Java Certificate' },
       'azure-foundry': { name: 'Generative AI innovation: what’s new in Azure AI Foundry' },
       'pl-600': { name: 'PL-600: Microsoft Power Platform Solution Architect' },
       'santander-negociacion': { name: 'Santander Negotiation Certification' },
